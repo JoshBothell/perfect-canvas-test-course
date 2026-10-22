@@ -1,0 +1,252 @@
+key: gen3-hoenn
+title: "🔵 Gen III: Hoenn"
+published: true
+prerequisites: [gen2-johto]
+unlock_at: "+14d@08:00"
+tests: [module unlock_at date, advanced grading workflows, date edge cases, content edge cases, large pages]
+items:
+  - type: subheader
+    title: "📖 Learn"
+  - type: page
+    key: hoenn-overview
+    title: "Hoenn Overview"
+    body: {file: pages/hoenn-overview.html}
+    requirement: must_view
+  - type: page
+    key: national-pokedex
+    title: "National Pokédex #001–#386"
+    body: {file: pages/national-pokedex.html}
+    indent: 1
+    tests: [very large page (386-row table, 386 images), performance]
+  - type: page
+    key: contest-gallery
+    title: "Contest Hall Gallery (30 images)"
+    body: {file: pages/contest-gallery.html}
+    indent: 1
+    tests: [image-heavy page]
+  - type: page
+    key: unicode-title
+    title: "Pokémon Ruby & Sapphire — ルビー・サファイア 🔴🔵"
+    body: |
+      <p>This page's <strong>title</strong> contains an ampersand, an em dash, Japanese text and emoji. Its URL slug is derived from the title on import.</p>
+      <p lang="ja">ポケットモンスター ルビー・サファイア (2002)</p>
+    indent: 1
+    tests: [unicode/CJK/emoji title, ampersand in title]
+  - type: page
+    key: escaping-torture
+    title: "Team Aqua <vs> Team Magma & \"Friends\" 'n' `code` ${not_a_var} {{not_jinja}}"
+    url: team-aqua-vs-team-magma-escaping-torture
+    body: |
+      <p>The title of this page contains <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, double and single quotes, backticks, <code>${}</code> and <code>{{ '{{' }}…}}</code>. Use it to test HTML escaping, JSON encoding and templating in your tool.</p>
+    indent: 1
+    tests: [HTML/JSON/template escaping in titles]
+  - type: page
+    key: max-length-title
+    title: "Hoenn Weather Trio Research Compendium: Groudon, Kyogre and Rayquaza, Their Abilities (Drought, Drizzle, Air Lock), Signature Moves and Lore From Ruby, Sapphire and Emerald, Written to Hit Canvas's 255-Character Title Limit for Truncation Testing!!!!!!!!!"
+    url: max-length-title
+    body: "<p>This page's title is exactly 255 characters, Canvas's limit. Check truncation in navigation, breadcrumbs and your tool's UI.</p>"
+    indent: 1
+    tests: [255-character title]
+  - type: page
+    key: scheduled-page
+    title: "Battle Frontier Preview (scheduled publish)"
+    published: false
+    publish_at: "+30d@09:00"
+    body: "<p>This page is unpublished and scheduled to publish automatically (publish_at).</p>"
+    indent: 1
+    tests: [scheduled publish_at page]
+  - type: page
+    key: unpublished-in-published-module
+    title: "Secret Base Blueprints (unpublished page)"
+    published: false
+    item_published: false
+    body: "<p>An unpublished page inside a published module. Students should not see it.</p>"
+    indent: 1
+    tests: [unpublished page in a published module]
+  - type: page
+    key: rtl-page
+    title: "مرحبا هوين (RTL page)"
+    url: rtl-page
+    body: |
+      <div dir="rtl" lang="ar" style="text-align: right;">
+        <h2>مرحبا بك في منطقة هوين</h2>
+        <p>هذه الصفحة مكتوبة من اليمين إلى اليسار لاختبار دعم اللغات ثنائية الاتجاه. يحتوي النص المختلط على كلمات إنجليزية مثل Pokémon و Mudkip.</p>
+      </div>
+    indent: 1
+    tests: [right-to-left page and title, bidi text]
+
+  - type: subheader
+    title: "✍️ Practice: advanced grading workflows"
+  - type: assignment
+    key: contest-hall-judging
+    title: "Contest Hall Judging (moderated grading)"
+    group: pokedex
+    points: 50
+    submission_types: [online_upload, online_text_entry]
+    moderated_grading: true
+    grader_count: 2
+    grader_comments_visible_to_graders: true
+    graders_anonymous_to_graders: true
+    grader_names_visible_to_final_grader: true
+    rubric: contest-judging
+    due: "+28d@23:59"
+    description: "<p>Two provisional graders score each entry; the final grader picks the official score. The seeder sets the final grader.</p>"
+    tests: [moderated grading, grader_count=2, anonymous graders, hidden rubric score total]
+  - type: assignment
+    key: secret-base-design
+    title: "Secret Base Design (anonymous grading)"
+    group: pokedex
+    points: 20
+    submission_types: [online_upload]
+    anonymous_grading: true
+    due: "+29d@23:59"
+    description: "<p>Graded anonymously: student identities are hidden in SpeedGrader.</p>"
+    tests: [anonymous grading]
+  - type: assignment
+    key: battle-frontier-report
+    title: "Battle Frontier Report (manual post policy)"
+    group: pokedex
+    points: 20
+    submission_types: [online_text_entry]
+    post_manually: true
+    due: "+30d@23:59"
+    description: "<p>Grades stay hidden from students until the instructor posts them.</p>"
+    tests: [manual post policy (hidden grades)]
+  - type: assignment
+    key: pokeblock-recipe
+    title: "Pokéblock Recipe (3 attempts)"
+    group: pokedex
+    points: 10
+    submission_types: [online_text_entry, online_upload]
+    allowed_attempts: 3
+    due: "+27d@23:59"
+    description: "<p>You may submit up to <strong>3 times</strong>.</p>"
+    tests: [allowed_attempts=3]
+  - type: assignment
+    key: weather-trio-essay
+    title: "Weather Trio Essay (does not count toward final grade)"
+    group: pokedex
+    points: 10
+    submission_types: [online_text_entry]
+    omit_from_final_grade: true
+    due: "+31d@23:59"
+    description: "<p>Graded for feedback only; omitted from the final grade calculation.</p>"
+    tests: [omit_from_final_grade]
+  - type: assignment
+    key: hoenn-regional-exam-b
+    title: "Hoenn Regional Exam: Section B only"
+    group: elite
+    points: 50
+    submission_types: [online_upload]
+    only_visible_to_overrides: true
+    due: "+32d@23:59"
+    description: "<p>Only visible to students in the section/override the seeder assigns (Viridian City, Section B). Also on the Elite Four group's never-drop list.</p>"
+    tests: [only_visible_to_overrides (differentiated), never_drop rule]
+  - type: assignment
+    key: unpublished-assignment
+    title: "Draft: Hoenn Safari Zone (unpublished)"
+    group: pokedex
+    points: 10
+    published: false
+    item_published: false
+    submission_types: [online_text_entry]
+    due: "+40d@23:59"
+    tests: [unpublished assignment in published module]
+
+  - type: subheader
+    title: "📅 Date edge cases"
+  - type: assignment
+    key: past-due-1
+    title: "Past Due: Petalburg Woods Survey"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    due: "-7d@23:59"
+    tests: [due 1 week ago, missing submissions]
+  - type: assignment
+    key: past-due-locked
+    title: "Past Due & Locked: Mt. Chimney Ash Sample"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    unlock: "-20d@00:00"
+    due: "-10d@23:59"
+    lock: "-3d@23:59"
+    tests: [past lock date (closed for submission)]
+  - type: assignment
+    key: due-today
+    title: "Due Today: Slateport Market Haul"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    due: "+0d@23:59"
+    tests: [due today 23:59 local]
+  - type: assignment
+    key: due-this-week
+    title: "Due This Week: Mauville Bike Shop"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    due: "+3d@17:00"
+    tests: [due within 7 days (To-Do / upcoming)]
+  - type: assignment
+    key: dst-deadline
+    title: "DST Deadline: Fortree Treehouse (due 01:30 on DST change day)"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    due: "dst_next@01:30"
+    tests: [due on the DST transition day at an ambiguous/nonexistent local time]
+  - type: assignment
+    key: all-day-due
+    title: "All-Day: Lilycove Museum Visit"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    all_day: true
+    due: "+12d@23:59"
+    tests: [all_day due date]
+  - type: assignment
+    key: far-future
+    title: "Far Future: Sootopolis Expedition"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    due: "+110d@23:59"
+    tests: [due near end of term]
+  - type: assignment
+    key: no-due-date
+    title: "No Due Date: Pacifidlog Journal"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    tests: [no due date]
+  - type: assignment
+    key: availability-window
+    title: "Availability Window: Ever Grande Gauntlet"
+    group: pokedex
+    points: 5
+    submission_types: [online_text_entry]
+    unlock: "+5d@08:00"
+    due: "+7d@23:59"
+    lock: "+9d@23:59"
+    tests: [future unlock_at < due_at < lock_at window]
+
+  - type: subheader
+    title: "💬 Discuss & ⚔️ Battle"
+  - type: discussion
+    key: weather-trio-debate
+    title: "Groudon vs. Kyogre: Who Wins? (side comments)"
+    discussion_type: side_comment
+    allow_rating: true
+    only_graders_can_rate: true
+    todo_date: "+15d@12:00"
+    message: "<p>Side-comment style discussion (one level of replies). Ungraded but shows on the To-Do list.</p>"
+    tests: [side_comment discussion, only_graders_can_rate, todo_date on ungraded discussion]
+  - type: quiz
+    key: wtp-marathon
+    indent: 1
+    tests: [50-question / 50-image quiz (render + perf), extra-credit quiz, keep_latest scoring, one_time_results, correct answers never shown]
+  - type: quiz
+    key: elite-four-final
+    tests: [every Classic question type in one quiz, access code, show answers after date, 60-min limit, bank draw at the end]

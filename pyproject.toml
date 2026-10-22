@@ -1,0 +1,29 @@
+[project]
+name = "canvas-test-course"
+version = "0.1.0"
+description = "Theme-agnostic generator + seeder for feature-complete Canvas LMS test courses (.imscc) for LTI tool development. Themes live in themes/<name>/."
+requires-python = ">=3.12"
+dependencies = [
+  "jinja2>=3.1",
+  "pyyaml>=6.0",
+  "lxml>=5.0",
+  "requests>=2.31",
+  "pillow>=10.0",
+  "fpdf2>=2.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+cc = "cc_gen.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["cc_gen", "seeder"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

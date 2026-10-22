@@ -1,0 +1,17 @@
+key: favorite-johto-starter
+title: "Favorite Johto Starter (graded survey)"
+quiz_type: graded_survey
+group: practice
+points: 2
+due: "+20d@23:59"
+description: "<p>A graded survey: everyone who completes it receives full credit; there are no right answers.</p>"
+questions:
+  - type: multiple_choice
+    name: "Pick one"
+    points: 1
+    text: "<p>Which Johto starter is your favorite?</p>"
+    answers: [{text: Chikorita}, {text: Cyndaquil}, {text: Totodile}]
+  - type: essay
+    name: "Why?"
+    points: 1
+    text: "<p>Why?</p>"

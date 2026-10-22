@@ -1,0 +1,78 @@
+key: kanto-gym-quiz
+title: "Kanto Gym Battle Quiz"
+quiz_type: assignment
+group: gym
+due: "+12d@23:59"
+allowed_attempts: 2
+scoring_policy: keep_highest
+shuffle_answers: true
+show_correct_answers: true
+show_correct_answers_last_attempt: true
+description: |
+  <p>Ten points across the five CC-portable question types (these also survive export to <em>plain</em> Common Cartridge), plus one bonus silhouette drawn from the 386-question bank.
+  Two attempts; the highest score is kept. <strong>Score at least 6</strong> to complete the module.</p>
+questions:
+  - type: multiple_choice
+    name: "Brock's type"
+    points: 1
+    text: "<p>Which type does Pewter City Gym Leader Brock specialize in?</p>"
+    answers:
+      - {text: Rock, correct: true, feedback: "Right, Onix and Geodude."}
+      - {text: Ground}
+      - {text: Fighting}
+      - {text: Normal, feedback: "Nope. That's Whitney in Johto."}
+    feedback:
+      correct: "Correct!"
+      incorrect: "Review the Gym table on the Kanto Overview page."
+      neutral: "Brock is the first Gym Leader in Kanto."
+  - type: multiple_choice
+    name: "Image question"
+    points: 1
+    text: |
+      <p>Who's that Pokémon? (starter edition)</p>
+      <p>{{ masked(entry('Squirtle')) }}</p>
+    answers:
+      - {text: Bulbasaur}
+      - {text: Charmander}
+      - {text: Squirtle, correct: true}
+  - type: true_false
+    name: "Mew is #151"
+    points: 1
+    text: "<p>Mew is number #151 in the National Pokédex.</p>"
+    answer: true
+  - type: true_false
+    name: "Ghost vs Psychic in Gen I"
+    points: 1
+    text: "<p>In the original Gen I games, Ghost-type moves were super effective against Psychic types.</p>"
+    answer: false
+    feedback:
+      incorrect: "A famous bug made Ghost moves do nothing to Psychic types in Gen I."
+  - type: multiple_answers
+    name: "Fire weaknesses"
+    points: 2
+    text: "<p>Select <strong>all</strong> types that are super effective against Fire.</p>"
+    answers:
+      - {text: Water, correct: true}
+      - {text: Rock, correct: true}
+      - {text: Ground, correct: true}
+      - {text: Grass}
+      - {text: Ice}
+  - type: short_answer
+    name: "Electric mouse"
+    points: 1
+    text: "<p>Name the Electric-type mouse Pokémon that is #025 in the Pokédex.</p>"
+    answers: [Pikachu, pikachu, PIKACHU]
+  - type: matching
+    name: "Match the leader to the city"
+    points: 3
+    text: "<p>Match each Gym Leader to their city.</p>"
+    pairs:
+      - {left: Misty, right: Cerulean City}
+      - {left: Lt. Surge, right: Vermilion City}
+      - {left: Erika, right: Celadon City}
+    distractors: [Lavender Town, Pallet Town]
+  - type: group
+    name: "Bonus silhouette (1 of 386)"
+    pick: 1
+    points_per_item: 1
+    bank: whos-that-pokemon-bank

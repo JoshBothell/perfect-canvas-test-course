@@ -1,0 +1,15 @@
+<h2>Public Domain Day: Midnight, January 1</h2>
+<p>Copyright terms run to the <strong>end of the calendar year</strong>, so every year's crop of newly free works arrives at once on <strong>January 1</strong>. But "midnight" happens at different moments around the world, which is exactly why dates and time zones matter in this course.</p>
+<p>This page is on your <strong>To-Do list</strong> for {{ date('+2d@09:00') }} (page todo_date).</p>
+
+<h3>Time-zone test strip</h3>
+<p>Every date below was computed in the course time zone (<strong>{{ settings.time_zone }}</strong>) when the course was built. Compare these with how Canvas, and your LTI tool, render the corresponding due dates.</p>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Spec</th><th scope="col">Local (course TZ)</th><th scope="col">Used by</th></tr></thead>
+  <tbody>
+    <tr><td><code>-2d@23:59</code></td><td>{{ date('-2d@23:59') }}</td><td>{{ a_assignment('catalog-record-url') }} (past due)</td></tr>
+    <tr><td><code>+0d@23:59</code></td><td>{{ date('+0d@23:59') }}</td><td>{{ a_assignment('due-today') }}</td></tr>
+    <tr><td><code>dst_next@01:30</code></td><td>{{ date('dst_next@01:30') }}</td><td>{{ a_assignment('dst-deadline') }} (ambiguous wall-clock time on fall-back days)</td></tr>
+    <tr><td><code>+14d@08:00</code></td><td>{{ date('+14d@08:00') }}</td><td>Unit 3 module unlock</td></tr>
+  </tbody>
+</table>

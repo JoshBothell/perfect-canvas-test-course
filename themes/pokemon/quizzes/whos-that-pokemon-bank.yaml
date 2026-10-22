@@ -1,0 +1,8 @@
+key: whos-that-pokemon-bank
+bank: true
+title: "Who's That Pokémon? Bank (all 386)"
+questions:
+  # one silhouette question per Pokémon #001–#386; distractor names re-picked on every build
+  - type: generated
+    generator: identify
+    all: true

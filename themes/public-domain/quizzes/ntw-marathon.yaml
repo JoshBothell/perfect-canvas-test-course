@@ -1,0 +1,19 @@
+key: ntw-marathon
+title: "Name That Work! Marathon (50 artworks, extra credit)"
+quiz_type: assignment
+group: extra
+due: "+34d@23:59"
+allowed_attempts: -1
+scoring_policy: keep_latest
+one_time_results: true
+show_correct_answers: false
+shuffle_answers: true
+description: |
+  <p>Fifty mystery works per attempt, drawn from all 386. This is a deliberately heavy quiz (50 questions and 50 images) for render and performance testing.</p>
+  <p>Extra credit. Unlimited attempts; only your <strong>latest</strong> score counts. You can see your results once, and correct answers are never shown.</p>
+questions:
+  - type: group
+    name: "Marathon mystery works (50 of 386)"
+    pick: 50
+    points_per_item: 0.1
+    bank: name-that-work-bank

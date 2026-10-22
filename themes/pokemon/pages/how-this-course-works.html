@@ -1,0 +1,32 @@
+<h2>How This Course Works</h2>
+<p>Each region module follows the same rhythm:</p>
+<ol>
+  <li><strong>📖 Learn:</strong> read the region guide and reference pages.</li>
+  <li><strong>✍️ Practice:</strong> submit Pokédex entries and field notes (assignments).</li>
+  <li><strong>💬 Discuss:</strong> debate strategy with other trainers.</li>
+  <li><strong>⚔️ Battle:</strong> take the Gym quiz. A passing score unlocks the next region.</li>
+</ol>
+
+<h3>Grading</h3>
+<p>Final grades are <strong>weighted by assignment group</strong> and reported using the <em>Badge Tiers</em> grading scheme.</p>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Group</th><th scope="col">Weight</th><th scope="col">Rule</th></tr></thead>
+  <tbody>
+  {% for g in course.assignment_groups.values() %}
+    <tr><td>{{ g.title }}</td><td>{{ g.weight }}%</td><td>{% if g.get('rules') %}{% for k, v in g.rules.items() %}{{ k.replace('_', ' ') }}: {{ v if v is number else v|length ~ ' item(s)' }}{% if not loop.last %}; {% endif %}{% endfor %}{% else %}—{% endif %}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h3>Badge Tiers</h3>
+<ul>
+{% for name, cutoff in settings.grading_standards[0].data %}
+  <li><strong>{{ name }}</strong>: {{ (cutoff * 100)|round|int }}% and up</li>
+{% endfor %}
+</ul>
+
+<h3>Late Work</h3>
+<p>Late submissions lose <strong>10% per day</strong>, but never drop below <strong>50%</strong> of earned points. Missing work is not automatically penalized.</p>
+
+<h3>Time Zone</h3>
+<p>All due dates are shown in <strong>{{ settings.time_zone }}</strong> (the course time zone). Pay attention around daylight-saving changes! One assignment in Hoenn is due on the morning of the next DST transition ({{ date('dst_next@01:30') }}).</p>

@@ -1,0 +1,60 @@
+<div style="border-radius: 12px; overflow: hidden; margin-bottom: 18px;">
+  {{ img('images/course-card.png', 'Public Domain Academy banner: brown, gold and teal gradient with concentric rings', style='width: 100%; height: auto; display: block;') }}
+</div>
+
+<h2>Welcome to Public Domain Academy!</h2>
+<p>This course is a tour of the <strong>public domain</strong>: the huge commons of books, films, music and art that anyone may use, copy and remix without permission. Each unit is one module: <strong>Copyright Foundations</strong>, <strong>How Works Enter the Public Domain</strong>, and <strong>Using the Public Domain</strong>. Along the way you'll read statutes, write status memos, take quizzes on a collection of 386 public-domain artworks, and argue cases with your classmates.</p>
+
+<div style="background: #fdf6e3; border-left: 6px solid #c9a227; padding: 12px 16px; margin: 16px 0;">
+  <p style="margin: 0;"><strong>For developers:</strong> this is a test fixture course. The public-domain theme is filler. Every item exists to exercise a native Canvas feature. The unpublished page {{ a_page('developer-notes') }} lists what each item tests.</p>
+</div>
+
+<h3>Your Path</h3>
+<table style="width: 100%; border-collapse: collapse;" border="1" cellpadding="8">
+  <caption>Course modules and what you'll do in each</caption>
+  <thead>
+    <tr style="background: #2f5d62; color: #ffffff;">
+      <th scope="col">Unit</th>
+      <th scope="col">Featured works</th>
+      <th scope="col">Highlights</th>
+      <th scope="col">Unlocks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">📜 Unit 1: Copyright Foundations</th>
+      <td>{% for e in catalog_group(1)[:3] %}{{ entry_image(e, 48) }} {% endfor %}</td>
+      <td>{{ a_page('unit1-overview') }}, {{ a_assignment('choose-your-first-work') }}, {{ a_quiz('copyright-basics-quiz') }}</td>
+      <td>Immediately</td>
+    </tr>
+    <tr>
+      <th scope="row">⏳ Unit 2: Entering the Public Domain</th>
+      <td>{% for e in catalog_group(2)[:3] %}{{ entry_image(e, 48) }} {% endfor %}</td>
+      <td>{{ a_page('unit2-overview') }}, {{ a_assignment('firm-brief') }}, {{ a_quiz('terms-formalities-quiz') }}</td>
+      <td>After completing Unit 1</td>
+    </tr>
+    <tr>
+      <th scope="row">🌍 Unit 3: Using the Public Domain</th>
+      <td>{% for e in catalog_group(3)[:3] %}{{ entry_image(e, 48) }} {% endfor %}</td>
+      <td>{{ a_page('unit3-overview') }}, {{ a_assignment('moot-court-judging') }}, {{ a_quiz('bar-exam-final') }}</td>
+      <td>{{ date('+14d@08:00', '%B %-d') }} <em>and</em> after completing Unit 2</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Quick Links</h3>
+<p>
+  <a class="btn btn-primary" href="{{ course_link('modules') }}">Go to Modules</a>
+  <a class="btn" href="{{ course_link('assignments/syllabus') }}">Syllabus</a>
+  <a class="btn" href="{{ course_link('grades') }}">Grades</a>
+  <a class="btn" href="{{ course_link('announcements') }}">Announcements</a>
+  <a class="btn" href="{{ course_link('files') }}">Files</a>
+</p>
+<ul>
+  <li>First stop: {{ a_page('how-this-course-works') }}</li>
+  <li>Say hello: {{ a_discussion('introductions') }}</li>
+  <li>Reference: {{ a_file('documents/term-chart.pdf', 'U.S. Copyright Term Chart (PDF)') }} · {{ a_file('data/collection.csv', 'Collection data with licence evidence (CSV)') }}</li>
+  <li>Jump straight to a module item: <a href="{{ module_item('unit1-foundations', 'page-unit1-overview') }}">Unit 1 Overview (module item link)</a></li>
+</ul>
+
+<p style="font-size: 0.85em; color: #555;">Educational test-fixture content, not legal advice. {% if fetched_count() %}Collection images ({{ fetched_count() }} of {{ catalog|length }}) are open-access images of public-domain works, released under CC0 by the Art Institute of Chicago and The Metropolitan Museum of Art (courtesy credit; no endorsement implied). Any image the build couldn't fetch, and all other images, are original generated placeholders.{% else %}All images are original generated placeholders.{% endif %} Course media: see {{ a_page('course-tour') }}.</p>

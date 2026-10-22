@@ -1,0 +1,56 @@
+# Theme config for "Pokémon Trainer Academy: Gen I–III". INTERNAL USE ONLY (trademarked names,
+# pokemon.com artwork). See CLAUDE.md §8 for every key and the theme.py hooks.
+
+name: pokemon
+title: "Pokémon Trainer Academy: Gen I–III"
+# Migration-id hash namespace. NEVER change it for an existing theme: every Canvas object's
+# migration_id derives from it, so changing it makes re-imports duplicate instead of update.
+namespace: pta
+output: pokemon-trainer-academy.imscc
+matrix_doc: docs/TEST_MATRIX.md
+commercial: false
+# `cc <command> -p` (or -P / --pokemon) = `--theme pokemon`. The default theme is public-domain.
+cli_flags: ["-p", "-P", "--pokemon"]
+
+# Terms that identify this theme. `cc validate --forbid-theme pokemon` (and the test suite, for
+# every theme with commercial: true) fails if any of these or any catalog name appears in a package
+# (whole word, case-insensitive; text files and file names, not inside PDF/DOCX/image bytes).
+brand_terms: [Pokémon, Pokemon, Pokédex, Pokedex, Nintendo, GAME FREAK, Game Freak, Creatures Inc, pokemon.com, Kanto, Johto, Hoenn, Pikachu]
+# Catalog names that are ordinary English words: not treated as forbidden terms in other themes.
+common_words: [Gloom, Persian, Golem, Slowpoke, Magneton, Electrode, Ditto, Mew, Haunter, Jynx, Seel]
+
+catalog:
+  file: data/pokedex_1_386.csv
+  id: dex
+  name: name
+  group: generation             # unit 1/2/3 for catalog_group() and `catalog_group:` in generated questions
+  int_fields: [dex, generation, hp, attack, defense, sp_attack, sp_defense, speed]
+  image: "images/sprites/gen{generation}/{dex:03d}-{slug}.png"
+
+images:
+  source:
+    url: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/{dex:03d}.png"
+    cache: pokemon-com          # build/cache/pokemon-com/<id>.png
+    label: pokemon.com
+    user_agent: "pokemon-trainer-academy-canvas-fixture/0.1 (+internal test course build)"
+  alt_fetched: "Official artwork for #{dex:03d} {name}"
+  alt_placeholder: "Placeholder card for #{dex:03d} {name}"
+  mask: silhouette              # silhouette | pixelate | blur (or a mask_image hook in theme.py)
+  masked_dir: images/mystery
+  masked_alt_fetched: "Mystery Pokémon silhouette"
+  masked_alt_placeholder: "Mystery Pokémon card (name hidden)"
+  feedback_width: 215           # unmasked image shown as general feedback on identify questions
+
+identify:                       # the `identify` question generator (str.format over catalog entry fields)
+  prompt: "Who's that Pokémon?"
+  question_name: "Silhouette #{dex:03d}"
+  correct: "It's {name}!"
+  incorrect: "It's {name} (#{dex:03d})."
+  choices: 4
+  points: 1
+
+seeder:
+  sis_prefix: pta               # SIS ids "<prefix>-<key>"; teardown deletes <prefix>-* users
+  email_domain: pta.example.com
+  orientation_module: start-here
+  intro_discussion: introductions

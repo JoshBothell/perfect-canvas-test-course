@@ -1,0 +1,32 @@
+{{ img('images/units/unit2.png', 'Unit 2: Entering the public domain banner, teal gradient', style='width: 100%; height: auto; border-radius: 10px;') }}
+<h2>Unit 2: How Works Enter the Public Domain</h2>
+<p>There are only a few doors into the public domain: the <strong>term expires</strong>, the work was made by the <strong>U.S. federal government</strong>, the owner <strong>dedicates</strong> it (for example with CC0), or, for older U.S. works, the owner <strong>failed a formality</strong> such as notice or renewal.</p>
+<p><strong>This module uses sequential progress:</strong> you must complete each requirement in order. It unlocks only after you complete Unit 1.</p>
+
+{% set g2 = catalog_group(2) %}
+<h3>The four doors</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Door</th><th scope="col">Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td>Expiration</td><td>Every January 1, a new year of works enters the public domain. See {{ a_page('public-domain-day') }}. {{ status_badge('expired', 72) }}</td></tr>
+    <tr><td>Formalities</td><td>Many U.S. works published 1931–1963 were never renewed, and are free today. {{ status_badge('not-renewed', 72) }}</td></tr>
+    <tr><td>Government works &amp; dedication</td><td>{{ status_badge('us-government') }} {{ status_badge('cc0') }}</td></tr>
+  </tbody>
+</table>
+
+<h3>The collection, Part II: works from the 1800s</h3>
+<p>{% for e in g2[:9] %}{{ entry_image(e, 96) }} {% endfor %}</p>
+
+<h3>Artists in Part II with more than one work</h3>
+<ul>{% for artist, works in g2|groupby('artist') if works|length > 1 and artist != 'Unknown artist' %}<li><strong>{{ artist }}</strong>: {{ works|length }} works ({{ works|map(attribute='name')|join(', ') }})</li>{% endfor %}</ul>
+
+<h3>Assignments in this module</h3>
+<p>Unit 2 has one assignment for each Canvas <strong>grading type</strong>, plus group work and peer review:</p>
+<ul>
+  <li>{{ a_assignment('status-memo-letter') }}</li>
+  <li>{{ a_assignment('renewal-report-gpa') }}</li>
+  <li>{{ a_assignment('government-works-percent') }}</li>
+  <li>{{ a_assignment('research-toolkit-setup') }}</li>
+  <li>{{ a_assignment('reading-journal') }}</li>
+  <li>{{ a_assignment('firm-brief') }} · {{ a_assignment('archive-research') }} · {{ a_assignment('cc0-explainer-peer-review') }}</li>
+</ul>

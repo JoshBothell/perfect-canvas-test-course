@@ -1,0 +1,78 @@
+<h2>RCE Kitchen Sink</h2>
+<p>This page contains every common Rich Content Editor element, so tools that parse, render, index, translate or check the accessibility of page HTML have one place to test against.</p>
+
+<h3>Headings</h3>
+<h4>Heading level 4</h4>
+<h5>Heading level 5</h5>
+<h6>Heading level 6</h6>
+
+<h3>Inline formatting</h3>
+<p><strong>Bold</strong>, <em>italic</em>, <u>underline</u>, <s>strikethrough</s>, <sup>superscript</sup>, <sub>subscript</sub>, <code>inline code</code>, <kbd>Ctrl</kbd>+<kbd>S</kbd>, <abbr title="Hit Points">HP</abbr>, <mark>highlight</mark>, <span style="color: #e3350d;">colored text</span>, <span style="background-color: #ffcb05;">background color</span>, <span style="font-size: 1.5em;">large text</span>.</p>
+
+<h3>Lists</h3>
+<ul>
+  <li>Unordered item
+    <ul><li>Nested item<ol><li>Nested ordered</li></ol></li></ul>
+  </li>
+  <li>Second item</li>
+</ul>
+<ol type="I" start="3"><li>Roman numerals starting at III</li><li>IV</li></ol>
+<dl><dt>Pokédex</dt><dd>A handheld encyclopedia of Pokémon.</dd></dl>
+
+<h3>Table (with caption, scoped headers, colspan/rowspan)</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <caption>Kanto starters: base stats</caption>
+  <thead>
+    <tr><th scope="col" rowspan="2">Pokémon</th><th scope="colgroup" colspan="3">Base stats</th></tr>
+    <tr><th scope="col">HP</th><th scope="col">Atk</th><th scope="col">Spe</th></tr>
+  </thead>
+  <tbody>
+  {% for n in ['Bulbasaur', 'Charmander', 'Squirtle'] %}{% set m = entry(n) %}
+    <tr><th scope="row">{{ m.name }}</th><td>{{ m.hp }}</td><td>{{ m.attack }}</td><td>{{ m.speed }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h3>Quote, code and preformatted text</h3>
+<blockquote><p>"I see now that one's birth is irrelevant. It's what you do that determines who you are."</p></blockquote>
+<pre><code class="language-python">def effectiveness(attacking, defending):
+    return CHART[attacking].get(defending, 1.0)  # &lt;-- escaped angle brackets &amp; ampersands
+</code></pre>
+
+<h3>Disclosure widget</h3>
+<details><summary>Spoiler: Who's that Pokémon?</summary><p>It's Pikachu! ({{ entry_image(entry('Pikachu'), 64) }})</p></details>
+
+<h3>Math (Canvas equation image)</h3>
+<p>Damage roughly scales as <img class="equation_image" title="\frac{(2L/5+2) \cdot P \cdot A/D}{50} + 2" src="/equation_images/%255Cfrac%257B(2L%252F5%252B2)%2520%255Ccdot%2520P%2520%255Ccdot%2520A%252FD%257D%257B50%257D%2520%252B%25202?scale=1" alt="LaTeX: \frac{(2L/5+2) \cdot P \cdot A/D}{50} + 2" data-equation-content="\frac{(2L/5+2) \cdot P \cdot A/D}{50} + 2" data-ignore-a11y-check="" /> where L is level, P power, A attack and D defense.</p>
+<p>MathML: <math><mi>STAB</mi><mo>=</mo><mn>1.5</mn></math></p>
+
+<h3>Images: formats and sizes</h3>
+<p>
+  {{ img('images/capture-ball.svg', 'Capture ball icon (SVG)', 64) }}
+  {{ img('images/loading-ball.gif', 'Animated spinning capture ball (GIF)', 64) }}
+  {{ img('images/route-1.webp', 'Route 1 landscape (WebP)', 200) }}
+  {{ type_badge('Fire') }} {{ type_badge('Water') }} {{ type_badge('Grass') }}
+</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pok%C3%A9_Ball_icon.svg/120px-Pok%C3%A9_Ball_icon.svg.png" alt="Externally hosted image (Wikimedia Commons)" width="60" /> Externally hosted image (hotlinked; tests mixed-origin content).</p>
+<p><img src="{{ file('images/types/dragon.png') }}" alt="" role="presentation" /> Decorative image with empty alt text.</p>
+
+<h3>Embeds</h3>
+<p><iframe title="OpenStreetMap embed: the Kantō region of Japan (external iframe)" src="https://www.openstreetmap.org/export/embed.html?bbox=138.4%2C34.8%2C141.0%2C36.6&amp;layer=mapnik" width="560" height="315" style="border: 1px solid #999;"></iframe></p>
+<p><iframe title="Same-origin iframe: the course's own Pokédex page" src="{{ page('national-pokedex') }}" width="560" height="200"></iframe></p>
+
+<h3>Internationalization</h3>
+<p lang="ja">日本語: ポケットモンスター 赤・緑 (1996)</p>
+<p lang="ko">한국어: 포켓몬스터</p>
+<p lang="zh">中文: 宝可梦</p>
+<p dir="rtl" lang="ar" style="text-align: right;">العربية: مرحبا بك أيها المدرب في أكاديمية البوكيمون</p>
+<p dir="rtl" lang="he" style="text-align: right;">עברית: ברוך הבא, מאמן!</p>
+<p>Emoji: 🔥💧🌿⚡️🧊🥊☠️🌍🕊️🔮🐛🪨👻🐉🌑⚙️ · combined: 👩🏽‍🔬 · flags: 🇯🇵 🇺🇸</p>
+<p>Diacritics: Pokémon, Flabébé, Ōkido, Ñoño, Ærodactyl (sic), naïve café.</p>
+
+<h3>Long unbroken string (overflow test)</h3>
+<p>LlanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogochPikachuPikachuPikachuPikachuPikachuPikachuPikachuPikachuPikachuPikachuPikachu</p>
+<p>https://example.com/a/really/long/url/that/should/wrap/or/scroll/without/breaking/the/layout/of/the/page/or/your/lti/tool/iframe/0123456789</p>
+
+<h3>Horizontal rule & special characters</h3>
+<hr />
+<p>&lt;script&gt;alert('not executed')&lt;/script&gt; · &amp;amp; · &copy; &reg; &trade; · &frac12; &times; &divide; · non&#8209;breaking&nbsp;space · zero&#8203;width&#8203;space</p>

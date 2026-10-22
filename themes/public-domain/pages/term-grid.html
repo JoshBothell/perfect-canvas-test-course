@@ -1,0 +1,20 @@
+<h2>Term Arithmetic Grid (life + N)</h2>
+<p>Rows are the year the author died; columns are an illustrative copyright term of "life + N years". Each cell is the year the work enters the public domain (January 1, because terms run to the end of the calendar year). The real U.S. term for works created since 1978 is life + 70; other countries use other values. Mark this page as done when you've studied it (<em>must mark done</em> requirement).</p>
+<p>Printable version of the U.S. rules: {{ a_file('documents/term-chart.pdf', 'U.S. Copyright Term Chart (PDF)') }}</p>
+<table border="1" cellpadding="3" style="border-collapse: collapse; font-size: 0.8em; text-align: center;">
+  <caption>Public domain year by author's death year (row) and term length (column); shaded = already public domain as of {{ course.dates.anchor.year }}</caption>
+  <thead><tr><th scope="col">Died ↓ / Term →</th>{% for t in TERMS %}<th scope="col" style="background: {{ '#2f5d62' if t == 70 else '#7a4e2d' }}; color: #fff;">+{{ t }}</th>{% endfor %}</tr></thead>
+  <tbody>
+  {% for d in DEATH_YEARS %}
+    <tr><th scope="row" style="background: #7a4e2d; color: #fff;">{{ d }}</th>
+    {% for t in TERMS %}{% set y = pd_year(d, t) %}<td style="background: {{ '#8fd48f' if y <= course.dates.anchor.year else '#fff' }};{{ ' font-weight: bold;' if t == 70 else '' }}">{{ y }}</td>{% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h3>Key rules</h3>
+<ul>
+  <li>Add the term to the death year, then add one: an author who died in 1955 under life + 70 is free on January 1, 2026.</li>
+  <li>Works made for hire and anonymous works use fixed terms instead (95 years from publication or 120 from creation in the U.S.).</li>
+  <li>Status stamps used in this course: {% for key in STATUSES %}{{ status_badge(key, 72) }} {% endfor %}</li>
+</ul>

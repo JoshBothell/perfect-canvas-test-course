@@ -1,0 +1,10 @@
+<h2>Public Domain Day Arrivals Gallery</h2>
+<p>Thirty works from 1900–1930, the most recent arrivals in the collection, arranged in a responsive grid of inline-block figures with captions.</p>
+<div>
+{% for e in catalog_group(3)[:30] %}
+  <figure style="display: inline-block; margin: 6px; text-align: center; width: 128px;">
+    {{ entry_image(e, 120) }}
+    <figcaption style="font-size: 0.8em;">#{{ '%03d' % e.id }} {{ e.name }}<br />{{ e.artist }}, {{ e.year }}</figcaption>
+  </figure>
+{% endfor %}
+</div>

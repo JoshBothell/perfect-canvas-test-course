@@ -1,0 +1,23 @@
+key: gen4-preview
+title: "🚧 Gen IV Preview: Sinnoh (unpublished module)"
+published: false
+tests: [unpublished module with items]
+items:
+  - type: page
+    key: sinnoh-teaser
+    title: "Sinnoh Teaser"
+    published: false
+    item_published: false
+    body: "<p>Coming soon: Diamond & Pearl. This module is unpublished.</p>"
+  - type: quiz
+    key: wtp-sinnoh-sneak-peek
+    item_published: false
+    tests: [unpublished quiz in unpublished module, hide_results always]
+  - type: assignment
+    key: sinnoh-draft
+    title: "Sinnoh Draft Assignment"
+    group: practice
+    points: 10
+    published: false
+    item_published: false
+    submission_types: [online_text_entry]

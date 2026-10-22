@@ -1,0 +1,24 @@
+{{ img('images/units/unit3.png', 'Unit 3: Using the public domain banner, plum and amber gradient', style='width: 100%; height: auto; border-radius: 10px;') }}
+<h2>Unit 3: Using the Public Domain</h2>
+<p>Knowing a work is free is only half the job. This unit covers the edge cases: <strong>new material in adaptations</strong> is still protected, <strong>trademarks</strong> follow different rules than copyright (think of <em>Steamboat Willie</em>, free since 2024), terms differ <strong>between countries</strong>, <strong>sound recordings</strong> have their own schedule, and <em>Bridgeman v. Corel</em> asks whether a photograph of a public-domain painting is itself protected.</p>
+<p>This module <strong>unlocks on {{ date('+14d@08:00') }}</strong> and only after you complete Unit 2.</p>
+
+{% set g3 = catalog_group(3) %}
+<h3>The collection, Part III: works from 1900–1930</h3>
+<p>{% for e in g3[:9] %}{{ entry_image(e, 96) }} {% endfor %}</p>
+
+<h3>The most recent arrivals in the collection</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Image</th><th scope="col">Title</th><th scope="col">Artist</th><th scope="col">Year</th></tr></thead>
+  <tbody>{% for e in (g3|sort(attribute='year', reverse=True))[:8] %}<tr><td>{{ entry_image(e, 48) }}</td><td>{{ e.name }}</td><td>{{ e.artist }}</td><td>{{ e.year }}</td></tr>{% endfor %}</tbody>
+</table>
+
+<h3>Edge-case gallery</h3>
+<ul>
+  <li>{{ a_page('full-collection') }}: one 386-row page</li>
+  <li>{{ a_page('arrivals-gallery') }}: 30 images</li>
+  <li>{{ a_page('unicode-title') }}</li>
+  <li>{{ a_page('escaping-torture') }}</li>
+  <li>{{ a_page('max-length-title') }}</li>
+  <li>{{ a_page('rtl-page') }}</li>
+</ul>

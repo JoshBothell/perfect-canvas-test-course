@@ -1,0 +1,180 @@
+key: unit2-entering
+title: "⏳ Unit 2: How Works Enter the Public Domain"
+published: true
+prerequisites: [unit1-foundations]
+require_sequential_progress: true
+tests: [prerequisite on Unit 1, sequential progress, every grading type, group sets, peer review, question banks + groups, surveys]
+items:
+  - type: subheader
+    title: "📖 Learn"
+  - type: page
+    key: unit2-overview
+    title: "Unit 2 Overview: Expiration, Formalities & Dedication"
+    body: {file: pages/unit2-overview.html}
+    requirement: must_view
+  - type: page
+    key: public-domain-day
+    title: "Public Domain Day: Midnight, January 1"
+    body: {file: pages/public-domain-day.html}
+    requirement: must_view
+    indent: 1
+    tests: [dates rendered in course TZ, todo_date (student To-Do list)]
+    todo_date: "+2d@09:00"
+  - type: page
+    key: watchlist-wiki
+    title: "Public Domain Day Watchlist (students can edit)"
+    editing_roles: "teachers,students"
+    body: |
+      <h2>Public Domain Day Watchlist</h2>
+      <p>This page is editable by <strong>students</strong> (editing_roles = teachers,students). Add one work you expect to enter the public domain next January 1, with your reasoning, and sign it.</p>
+      <ul><li>Any work first published in the U.S. 96 years ago this coming New Year. (Prof. Van Helsing)</li></ul>
+    indent: 1
+    tests: [student-editable page, page revision history]
+  - type: file
+    path: data/renewal-search-log-10k.csv
+    title: "Renewal Search Log (10,000 rows)"
+    indent: 1
+    tests: [large CSV preview, display_name differs from filename]
+
+  - type: subheader
+    title: "✍️ Practice: every grading type"
+  - type: assignment
+    key: status-memo-letter
+    title: "Status Memo: A Work From the 1920s (letter grade)"
+    group: memos
+    points: 20
+    grading_type: letter_grade
+    grading_standard: case-outcome-tiers
+    submission_types: [online_text_entry]
+    rubric: status-memo
+    due: "+16d@23:59"
+    description: "<p>Write a status memo on a work first published in the 1920s. Displayed as a <strong>Case Outcome Tiers</strong> letter grade.</p>"
+    requirement: must_submit
+    tests: [grading_type=letter_grade, assignment-level grading scheme]
+  - type: assignment
+    key: renewal-report-gpa
+    title: "Renewal Research Report (GPA scale)"
+    group: memos
+    points: 4
+    grading_type: gpa_scale
+    grading_standard: gpa-4
+    submission_types: [online_text_entry, online_upload]
+    due: "+17d@23:59"
+    description: "<p>Search the renewal records for one pre-1964 work. Graded on the GPA 4.0 scale.</p>"
+    tests: [grading_type=gpa_scale, points-based grading scheme]
+  - type: assignment
+    key: government-works-percent
+    title: "Government Works Brief (percentage)"
+    group: memos
+    points: 15
+    grading_type: percent
+    submission_types: [online_upload]
+    allowed_extensions: [pdf, docx]
+    due: "+18d@23:59"
+    description: "<p>Explain 17 U.S.C. § 105 with one example. Graded and displayed as a percentage.</p>"
+    tests: [grading_type=percent]
+  - type: assignment
+    key: research-toolkit-setup
+    title: "Research Toolkit Setup (complete/incomplete)"
+    group: practice
+    points: 1
+    grading_type: pass_fail
+    submission_types: [online_text_entry]
+    due: "+15d@12:00"
+    description: "<p>Tell us which catalogs and databases you bookmarked. Complete/incomplete.</p>"
+    requirement: must_submit
+    tests: [grading_type=pass_fail]
+  - type: assignment
+    key: reading-journal
+    title: "Reading Journal (not graded)"
+    group: practice
+    grading_type: not_graded
+    submission_types: [online_text_entry]
+    due: "+19d@23:59"
+    description: "<p>Optional journal. Not graded; does not appear in the gradebook total.</p>"
+    tests: [grading_type=not_graded with submissions]
+  - type: assignment
+    key: pd-day-countdown
+    title: "Public Domain Day Countdown (extra credit)"
+    group: extra
+    points: 0
+    submission_types: [online_text_entry]
+    due: "+25d@23:59"
+    description: "<p>0 points possible in a 5% group: any points awarded are <strong>extra credit</strong>.</p>"
+    tests: [extra credit (0 points possible), weighted extra-credit group]
+
+  - type: subheader
+    title: "👥 Groups & Peers"
+  - type: assignment
+    key: firm-brief
+    title: "Law Firm Brief (group assignment)"
+    group: memos
+    points: 25
+    submission_types: [online_upload, online_text_entry]
+    group_category: "Law Firms"
+    grade_group_students_individually: false
+    due: "+20d@23:59"
+    description: "<p>Your firm submits one brief. Everyone in the group receives the same grade.</p>"
+    tests: [group assignment (one grade per group), group set created on import, group override (seeder)]
+  - type: assignment
+    key: archive-research
+    title: "Archive Research (group, graded individually)"
+    group: memos
+    points: 20
+    submission_types: [online_text_entry]
+    group_category: "Law Firms"
+    grade_group_students_individually: true
+    due: "+21d@23:59"
+    description: "<p>Group submission; each member is graded separately.</p>"
+    tests: [grade_group_students_individually]
+  - type: assignment
+    key: cc0-explainer-peer-review
+    title: "Write a CC0 Explainer (peer reviewed)"
+    group: memos
+    points: 15
+    submission_types: [online_text_entry, online_upload]
+    peer_reviews: true
+    automatic_peer_reviews: true
+    peer_review_count: 2
+    anonymous_peer_reviews: true
+    peer_reviews_due: "+24d@23:59"
+    due: "+22d@23:59"
+    rubric: status-memo
+    description: "<p>Explain how a CC0 dedication works, then review two classmates' explainers anonymously.</p>"
+    tests: [automatic anonymous peer reviews, peer_reviews_due_at]
+  - type: discussion
+    key: firm-strategy-room
+    title: "Firm Strategy Room (group discussion)"
+    group_category: "Law Firms"
+    discussion_type: threaded
+    message: "<p>Each firm gets its own copy of this discussion. Plan your brief here.</p>"
+    tests: [group discussion (one topic per group)]
+  - type: discussion
+    key: term-extension-archive
+    title: "1998 Term Extension Debate (locked discussion)"
+    discussion_type: flat
+    lock_at: "-1d@12:00"
+    message: "<p>This flat (non-threaded) discussion locked yesterday. Students can read but not reply.</p>"
+    tests: [flat discussion, lock_at in the past]
+
+  - type: subheader
+    title: "📝 Assess"
+  - type: quiz
+    key: terms-formalities-quiz
+    requirement: min_score
+    min_score: 10
+    tests: [fill-in-multiple-blanks, multiple dropdowns, numerical (exact/margin/range/precision), formula, essay, file upload, text-only, bank question group, time limit, cant_go_back]
+  - type: quiz
+    key: ntw-lightning-round
+    indent: 1
+    requirement: min_percentage
+    min_percentage: 70
+    tests: [3-minute time limit, keep_average scoring, hide_results until_after_last_attempt, min_percentage requirement, 10-question bank draw]
+  - type: quiz
+    key: favorite-pd-arrival
+    indent: 1
+    tests: [graded survey]
+  - type: quiz
+    key: course-feedback-survey
+    indent: 1
+    tests: [ungraded anonymous survey]

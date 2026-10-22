@@ -1,0 +1,5 @@
+key: empty-module
+title: "Empty Module"
+published: true
+tests: [empty module (empty-state UI)]
+items: []

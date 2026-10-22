@@ -1,0 +1,28 @@
+key: term-facts-bank
+bank: true
+title: "Terms & Formalities Bank"
+questions:
+  - type: multiple_choice
+    name: "Pre-1978 renewal term"
+    text: "<p>Under the 1909 Act, how long was the renewal term originally (before later extensions)?</p>"
+    answers: [{text: "28 years", correct: true}, {text: "14 years"}, {text: "47 years"}, {text: "50 years"}]
+  - type: multiple_choice
+    name: "Government works"
+    text: "<p>Which section of Title 17 says works of the U.S. federal government are not protected by copyright?</p>"
+    answers: [{text: "§ 105", correct: true}, {text: "§ 102"}, {text: "§ 107"}, {text: "§ 302"}]
+  - type: true_false
+    name: "Notice required before 1989"
+    text: "<p>Before March 1, 1989, publishing a work in the U.S. without a copyright notice could put it in the public domain.</p>"
+    answer: true
+  - type: short_answer
+    name: "Public Domain Day date"
+    text: "<p>On which month and day do works enter the U.S. public domain each year? (e.g. \"March 3\")</p>"
+    answers: [January 1, Jan 1]
+  - type: multiple_answers
+    name: "Ways into the public domain"
+    text: "<p>Select all the ways a work can enter the public domain.</p>"
+    answers: [{text: "Its copyright term expires", correct: true}, {text: "It is a U.S. federal government work", correct: true}, {text: "Its author dedicates it with CC0", correct: true}, {text: "It is posted on the internet"}, {text: "It is out of print"}]
+  - type: multiple_choice
+    name: "CTEA year"
+    text: "<p>In which year did the U.S. Copyright Term Extension Act become law?</p>"
+    answers: [{text: "1998", correct: true}, {text: "1976"}, {text: "1909"}, {text: "2018"}]

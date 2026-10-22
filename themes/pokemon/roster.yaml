@@ -1,0 +1,86 @@
+# People, sections, groups, overrides and activity the seeder creates AFTER importing the cartridge.
+# Everything a Common Cartridge cannot carry lives here. Keys are stable; SIS ids are "<sis_prefix>-<key>".
+
+sections:
+  - {key: pallet,   name: "Pallet Town (Section A)"}
+  - {key: viridian, name: "Viridian City (Section B)"}
+  - {key: cerulean, name: "Cerulean City Online (Section C)", start: "-30d@00:00", end: "+90d@23:59"}
+
+users:
+  # staff
+  - {key: oak,     name: "Samuel Oak",   short: "Prof. Oak", role: TeacherEnrollment,  sections: [pallet, viridian, cerulean]}
+  - {key: joy,     name: "Joy Nurse",    short: "Nurse Joy", role: TaEnrollment,       sections: [pallet, viridian], limit_privileges_to_course_section: true}
+  - {key: elm,     name: "Elm Utsugi",    short: "Prof. Elm", role: TeacherEnrollment,  sections: [cerulean], note: "second teacher (moderated-grading provisional grader)"}
+  - {key: bill,    name: "Bill Masaki",  short: "Bill",      role: DesignerEnrollment, sections: [pallet]}
+  # students
+  - {key: ash,     name: "Ash Ketchum",      role: StudentEnrollment, sections: [pallet]}
+  - {key: misty,   name: "Misty Waterflower", role: StudentEnrollment, sections: [pallet]}
+  - {key: brock,   name: "Brock Takeshi",   role: StudentEnrollment, sections: [viridian]}
+  - {key: gary,    name: "Gary Oak",         role: StudentEnrollment, sections: [viridian]}
+  - {key: may,     name: "May Maple",        role: StudentEnrollment, sections: [cerulean]}
+  - {key: brendan, name: "Brendan Birch",    role: StudentEnrollment, sections: [cerulean]}
+  - {key: ethan,   name: "Ethan Gold",       role: StudentEnrollment, sections: [pallet, viridian], note: "enrolled in two sections"}
+  - {key: lyra,    name: "Lyra Soul",        role: StudentEnrollment, sections: [viridian]}
+  - {key: okido,   name: "Ōkido Ñoño-Çelebi 🍃", short: "Ōkido", sortable: "Ñoño-Çelebi, Ōkido", role: StudentEnrollment, sections: [cerulean], note: "unicode + emoji name"}
+  - {key: red,     name: "Red (Silent Trainer)", role: StudentEnrollment, sections: [pallet], state: inactive, note: "inactive enrollment"}
+  - {key: blue,    name: "Blue Former-Champion", role: StudentEnrollment, sections: [viridian], state: completed, note: "concluded enrollment"}
+  - {key: tester,  name: "Test Trainer With An Exceptionally Long Name That Overflows Most UI Columns", short: "Long Name", role: StudentEnrollment, sections: [cerulean]}
+  # observer
+  - {key: delia,   name: "Delia Ketchum", role: ObserverEnrollment, sections: [pallet], observes: ash}
+
+group_sets:
+  - name: "Johto Rivals"          # created (empty) by the cartridge import; we fill it
+    groups:
+      "Team Rocket": [ash, misty, brock]
+      "Team Magma": [gary, lyra, ethan]
+      "Team Aqua": [may, brendan, okido]
+  - name: "Contest Teams"
+    self_signup: enabled
+    create_group_count: 4         # empty self-signup groups
+
+overrides:
+  - {assignment: choose-your-starter, section: viridian, due: "+7d@23:59", title: "Section B: +2 days"}
+  - {assignment: hoenn-regional-exam-b, section: viridian, due: "+32d@23:59"}
+  - {assignment: route-1-field-notes, students: [misty], due: "+3d@23:59", title: "Misty: extension"}
+  - {assignment: team-rocket-raid, group: "Team Aqua", due: "+23d@23:59"}
+
+# Student activity. Students first satisfy the Orientation module's requirements (view pages,
+# mark-done, post intro) so Gen I unlocks, then submit. Partial progress is intentional: it
+# produces a realistic mix of complete / in-progress / not-started module states.
+progress:
+  complete_orientation: [ash, misty, brock, gary, may, ethan, okido]
+  intro_posts:
+    ash: "Hi! I'm Ash from Pallet Town. My partner is Pikachu ⚡: we never give up!"
+    misty: "Misty here, Cerulean Gym. Water types forever 💧."
+    brock: "Brock from Pewter. Rock solid, and I'll be cooking for everyone."
+    gary: "Gary Oak. Smell ya later, losers. (Partner: Eevee.)"
+    may: "May from Petalburg! Torchic and I want to win the Grand Festival 🎀"
+    ethan: "Ethan, New Bark Town. Cyndaquil all the way 🔥"
+    okido: "こんにちは! Unicode test student: 名前 Ōkido Ñoño 🍃"
+
+submissions:
+  - {assignment: choose-your-starter, user: ash, type: online_text_entry, body: "<p>I choose <strong>Pikachu</strong>... wait, that isn't an option. Charmander!</p>"}
+  - {assignment: choose-your-starter, user: misty, type: online_text_entry, body: "<p>Squirtle, obviously. Water beats Fire and Rock.</p>"}
+  - {assignment: choose-your-starter, user: brock, type: online_text_entry, body: "<p>Bulbasaur: it handles Brock's own Rock types.</p>"}
+  - {assignment: choose-your-starter, user: okido, type: online_text_entry, body: "<p>ゼニガメ (Squirtle) 💧 with an RTL aside: <span dir='rtl'>مرحبا</span></p>"}
+  - {assignment: route-1-field-notes, user: ash, type: online_url, url: "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Red,_Blue,_and_Yellow"}
+  - {assignment: route-1-field-notes, user: misty, type: online_url, url: "https://example.com/misty-field-notes"}
+  - {assignment: pokedex-photo-entry, user: gary, type: online_upload, file: "images/sprites/gen1/133-eevee.png"}
+  - {assignment: multi-type-submission, user: may, type: online_text_entry, body: "<p>Text submission on a multi-type assignment.</p>"}
+  - {assignment: multi-type-submission, user: ethan, type: online_url, url: "https://example.com/ethan"}
+
+grades:
+  - {assignment: choose-your-starter, user: ash, rubric: {Accuracy: 3, "Observation Detail": 3, Presentation: 1}, comment: "Nice enthusiasm, but stick to the three starters!"}
+  - {assignment: choose-your-starter, user: misty, rubric: {Accuracy: 4, "Observation Detail": 4, Presentation: 2}, comment: "Excellent 💧"}
+  - {assignment: route-1-field-notes, user: ash, grade: "4", comment: "Late, but solid."}
+  - {assignment: route-1-field-notes, user: brock, excuse: true, comment: "Excused: Gym duties."}
+  - {assignment: game-boy-in-class, user: ash, grade: "5"}
+  - {assignment: game-boy-in-class, user: gary, grade: "0", comment: "Forgot it at home (on_paper grade entered by teacher)."}
+  - {assignment: johto-letter-grade, user: misty, grade: "Elite Four"}
+  - {assignment: pokegear-setup, user: brock, grade: "complete"}
+  - {assignment: johto-gpa, user: gary, grade: "3.5"}
+  - {assignment: johto-percent, user: lyra, grade: "87%"}
+  - {assignment: unown-extra-credit, user: ethan, grade: "3"}
+  - {assignment: battle-frontier-report, user: may, grade: "18", comment: "Hidden until posted (manual post policy)."}
+
+final_grader: {assignment: contest-hall-judging, user: oak}

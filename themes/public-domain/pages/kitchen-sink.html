@@ -1,0 +1,78 @@
+<h2>RCE Kitchen Sink</h2>
+<p>This page contains every common Rich Content Editor element, so tools that parse, render, index, translate or check the accessibility of page HTML have one place to test against.</p>
+
+<h3>Headings</h3>
+<h4>Heading level 4</h4>
+<h5>Heading level 5</h5>
+<h6>Heading level 6</h6>
+
+<h3>Inline formatting</h3>
+<p><strong>Bold</strong>, <em>italic</em>, <u>underline</u>, <s>strikethrough</s>, <sup>superscript</sup>, <sub>subscript</sub>, <code>inline code</code>, <kbd>Ctrl</kbd>+<kbd>S</kbd>, <abbr title="Public Domain">PD</abbr>, <mark>highlight</mark>, <span style="color: #8a3b5c;">colored text</span>, <span style="background-color: #c9a227;">background color</span>, <span style="font-size: 1.5em;">large text</span>.</p>
+
+<h3>Lists</h3>
+<ul>
+  <li>Unordered item
+    <ul><li>Nested item<ol><li>Nested ordered</li></ol></li></ul>
+  </li>
+  <li>Second item</li>
+</ul>
+<ol type="I" start="3"><li>Roman numerals starting at III</li><li>IV</li></ol>
+<dl><dt>Public domain</dt><dd>The body of creative works that no exclusive intellectual property rights apply to.</dd></dl>
+
+<h3>Table (with caption, scoped headers, colspan/rowspan)</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <caption>Three works from the collection</caption>
+  <thead>
+    <tr><th scope="col" rowspan="2">Work</th><th scope="colgroup" colspan="3">Catalog record</th></tr>
+    <tr><th scope="col">Artist</th><th scope="col">Year</th><th scope="col">Licence</th></tr>
+  </thead>
+  <tbody>
+  {% for e in catalog_group(1)[:3] %}
+    <tr><th scope="row">{{ e.name }}</th><td>{{ e.artist }}</td><td>{{ e.year }}</td><td>{{ e.license }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h3>Quote, code and preformatted text</h3>
+<blockquote><p>"He who receives an idea from me, receives instruction himself without lessening mine; as he who lights his taper at mine, receives light without darkening me." (Thomas Jefferson, letter to Isaac McPherson, 1813)</p></blockquote>
+<pre><code class="language-python">def pd_year(death, term):
+    return death + term + 1  # &lt;-- escaped angle brackets &amp; ampersands
+</code></pre>
+
+<h3>Disclosure widget</h3>
+<details><summary>Spoiler: Name that work!</summary>{% set e = catalog_group(3)[0] %}<p>It's {{ e.name }} by {{ e.artist }}! ({{ entry_image(e, 64) }})</p></details>
+
+<h3>Math (Canvas equation image)</h3>
+<p>A work by an author who died in year D, under a life + T term, enters the public domain on January 1 of <img class="equation_image" title="Y_{PD} = D + T + 1" src="/equation_images/Y_%257BPD%257D%2520%253D%2520D%2520%252B%2520T%2520%252B%25201?scale=1" alt="LaTeX: Y_{PD} = D + T + 1" data-equation-content="Y_{PD} = D + T + 1" data-ignore-a11y-check="" />.</p>
+<p>MathML: <math><mi>T</mi><mo>=</mo><mn>70</mn></math></p>
+
+<h3>Images: formats and sizes</h3>
+<p>
+  {{ img('images/open-book.svg', 'Open book icon (SVG)', 64) }}
+  {{ img('images/loading-book.gif', 'Animated spinning disc (GIF)', 64) }}
+  {{ img('images/reading-room.webp', 'Reading Room path landscape (WebP)', 200) }}
+  {{ status_badge('public-domain') }} {{ status_badge('cc0') }} {{ status_badge('us-government') }}
+</p>
+<p><img src="https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/200,/0/default.jpg" alt="Externally hosted image: Vincent van Gogh, The Bedroom, 1889 (Art Institute of Chicago, CC0)" width="120" /> Externally hosted image (hotlinked; tests mixed-origin content).</p>
+<p><img src="{{ file('images/status/expired.png') }}" alt="" role="presentation" /> Decorative image with empty alt text.</p>
+
+<h3>Embeds</h3>
+<p><iframe title="Internet Archive embed: Le Voyage dans la Lune (1902), public domain (external iframe)" src="https://archive.org/embed/levoyagedanslalune_georgesmelies" width="560" height="315" style="border: 1px solid #999;" allowfullscreen="allowfullscreen"></iframe></p>
+<p><iframe title="Same-origin iframe: the course's own Full Collection page" src="{{ page('full-collection') }}" width="560" height="200"></iframe></p>
+
+<h3>Internationalization</h3>
+<p lang="ja">日本語: パブリックドメイン（公有）</p>
+<p lang="ko">한국어: 퍼블릭 도메인</p>
+<p lang="zh">中文: 公有领域</p>
+<p dir="rtl" lang="ar" style="text-align: right;">العربية: مرحبا بك في أكاديمية الملك العام</p>
+<p dir="rtl" lang="he" style="text-align: right;">עברית: ברוכים הבאים לנחלת הכלל</p>
+<p>Emoji: 📜📚🖼️🎞️🎼⚖️🏛️🔓⏳📅🗝️🌍✍️🎭🕯️🦉 · combined: 👩🏽‍⚖️ · flags: 🇫🇷 🇺🇸</p>
+<p>Diacritics: Les Misérables, Œuvres libres, Ångström, São Paulo, Éponine, naïve café.</p>
+
+<h3>Long unbroken string (overflow test)</h3>
+<p>LlanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogochPublicDomainPublicDomainPublicDomainPublicDomainPublicDomainPublicDomainPublicDomain</p>
+<p>https://example.com/a/really/long/url/that/should/wrap/or/scroll/without/breaking/the/layout/of/the/page/or/your/lti/tool/iframe/0123456789</p>
+
+<h3>Horizontal rule & special characters</h3>
+<hr />
+<p>&lt;script&gt;alert('not executed')&lt;/script&gt; · &amp;amp; · &copy; &reg; &trade; · &frac12; &times; &divide; · non&#8209;breaking&nbsp;space · zero&#8203;width&#8203;space</p>

@@ -1,0 +1,11 @@
+<h2>The Collection, Part I: Works Before 1800</h2>
+<p>Every pre-1800 work in the course collection with its image. Data from <code>collection.csv</code>, which records each work's museum record and licence evidence. The table has one row and one image per work, which makes it a reasonably heavy page for render and scrape tests.</p>
+<table border="1" cellpadding="4" style="border-collapse: collapse; width: 100%;">
+  <caption>Collection #001–#{{ '%03d' % catalog_group(1)[-1].id }}: works before 1800</caption>
+  <thead><tr><th scope="col">#</th><th scope="col">Image</th><th scope="col">Title</th><th scope="col">Artist</th><th scope="col">Date</th><th scope="col">Source</th><th scope="col">Licence</th></tr></thead>
+  <tbody>
+  {% for e in catalog_group(1) %}
+    <tr><td>{{ '%03d' % e.id }}</td><td>{{ entry_image(e, 48) }}</td><td>{{ e.name }}</td><td>{{ e.artist }}</td><td>{{ e.date_display }}</td><td>{{ e.museum }}</td><td>{{ e.license }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>

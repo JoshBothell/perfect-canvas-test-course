@@ -1,0 +1,32 @@
+<h2>PDA-101 Syllabus: Public Domain Academy</h2>
+<p><strong>Instructor:</strong> Professor Van Helsing · <strong>TA:</strong> Ishmael · <strong>Office hours:</strong> weekly (see Calendar)</p>
+
+<h3>Course Description</h3>
+<p>An introduction to the public domain: what copyright protects, how and when works become free, and how to reuse them responsibly. Examples are drawn from a collection of 386 public-domain artworks made before 1931. <em>Educational test-fixture content, not legal advice.</em></p>
+
+<h3>Learning Outcomes</h3>
+<ol>
+  {% for o in course.outcomes.values() %}<li><strong>{{ o.title }}</strong>: {{ o.description|striptags }}</li>{% endfor %}
+</ol>
+
+<h3>Grading</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Assignment group</th><th scope="col">Weight</th></tr></thead>
+  <tbody>
+    {% for g in course.assignment_groups.values() %}<tr><td>{{ g.title }}</td><td>{{ g.weight }}%</td></tr>{% endfor %}
+  </tbody>
+</table>
+
+<h3>Policies</h3>
+<ul>
+  <li><strong>Late work:</strong> −10% per day late, minimum 50%.</li>
+  <li><strong>Academic integrity:</strong> The public domain is free to copy; your classmates' memos are not. Cite your sources.</li>
+  <li><strong>Accessibility:</strong> All videos have captions; contact the instructor for accommodations.</li>
+</ul>
+
+<h3>Required Materials</h3>
+<ul>
+  <li>{{ a_file('documents/pd-research-handbook.docx', 'Public Domain Research Handbook') }}</li>
+  <li>{{ a_file('documents/term-chart.pdf', 'U.S. Copyright Term Chart') }}</li>
+</ul>
+<p><em>The Canvas "Course Summary" table of dated items appears below this text (syllabus_course_summary is enabled).</em></p>

@@ -1,0 +1,78 @@
+key: copyright-basics-quiz
+title: "Copyright Basics Quiz"
+quiz_type: assignment
+group: quizzes
+due: "+12d@23:59"
+allowed_attempts: 2
+scoring_policy: keep_highest
+shuffle_answers: true
+show_correct_answers: true
+show_correct_answers_last_attempt: true
+description: |
+  <p>Ten points across the five CC-portable question types (these also survive export to <em>plain</em> Common Cartridge), plus one bonus mystery work drawn from the 386-question bank.
+  Two attempts; the highest score is kept. <strong>Score at least 6</strong> to complete the module.</p>
+questions:
+  - type: multiple_choice
+    name: "Copyright Clause"
+    points: 1
+    text: "<p>Which part of the U.S. Constitution gives Congress the power to grant copyrights \"for limited Times\"?</p>"
+    answers:
+      - {text: "Article I, Section 8", correct: true, feedback: "Right: Clause 8, the Copyright (or Progress) Clause."}
+      - {text: "The First Amendment"}
+      - {text: "Article III, Section 2"}
+      - {text: "The Fourteenth Amendment", feedback: "No. That amendment is about citizenship and equal protection."}
+    feedback:
+      correct: "Correct!"
+      incorrect: "Review the excerpts in the annotatable statute PDF."
+      neutral: "The clause says \"To promote the Progress of Science and useful Arts...\""
+  - type: multiple_choice
+    name: "Image question"
+    points: 1
+    text: |
+      <p>Name that work! (Unit 1 edition)</p>
+      <p>{{ masked(entry('Saint George and the Dragon')) }}</p>
+    answers:
+      - {text: "Madonna and Child Enthroned"}
+      - {text: "Yang Pu Moving His Family"}
+      - {text: "Saint George and the Dragon", correct: true}
+  - type: true_false
+    name: "Facts are not copyrightable"
+    points: 1
+    text: "<p>Under <em>Feist v. Rural</em> (1991), facts themselves are not protected by copyright.</p>"
+    answer: true
+  - type: true_false
+    name: "Ideas are protected"
+    points: 1
+    text: "<p>Copyright protects the underlying idea of a story, not just its expression.</p>"
+    answer: false
+    feedback:
+      incorrect: "Section 102(b) excludes ideas, procedures, processes, systems and methods of operation."
+  - type: multiple_answers
+    name: "Not copyrightable"
+    points: 2
+    text: "<p>Select <strong>all</strong> items that copyright does <em>not</em> protect.</p>"
+    answers:
+      - {text: "Facts", correct: true}
+      - {text: "Ideas", correct: true}
+      - {text: "Short titles and names", correct: true}
+      - {text: "A novel's text"}
+      - {text: "An original painting"}
+  - type: short_answer
+    name: "Requirement for protection"
+    points: 1
+    text: "<p>Besides being fixed in a tangible medium, a work must be what to be protected by copyright? (one word)</p>"
+    answers: [Original, original, ORIGINAL]
+  - type: matching
+    name: "Match the statute to the topic"
+    points: 3
+    text: "<p>Match each section of Title 17 to its topic.</p>"
+    pairs:
+      - {left: "§ 102", right: Subject matter of copyright}
+      - {left: "§ 105", right: U.S. government works}
+      - {left: "§ 302", right: Duration of copyright}
+    distractors: [Trademark registration, Patent term]
+  - type: group
+    name: "Bonus mystery work (1 of 386)"
+    pick: 1
+    points_per_item: 1
+    bank: name-that-work-bank

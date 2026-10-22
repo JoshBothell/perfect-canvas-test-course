@@ -1,0 +1,20 @@
+key: ntw-lightning-round
+title: "Name That Work! Lightning Round"
+quiz_type: assignment
+group: quizzes
+due: "+19d@23:59"
+time_limit: 3
+allowed_attempts: 3
+scoring_policy: keep_average
+hide_results: until_after_last_attempt
+one_question_at_a_time: true
+shuffle_answers: true
+description: |
+  <p>Ten mystery works in <strong>3 minutes</strong>, drawn fresh from the 386-question bank on every attempt.</p>
+  <p>Three attempts; your <strong>average</strong> score counts. Results stay hidden until after your last attempt. You need <strong>70%</strong> to complete the module requirement.</p>
+questions:
+  - type: group
+    name: "Lightning mystery works (10 of 386)"
+    pick: 10
+    points_per_item: 1
+    bank: name-that-work-bank

@@ -1,0 +1,51 @@
+# Theme config for "Public Domain Academy". SAFE FOR COMMERCIAL USE: every catalog image is a CC0
+# open-access image of a public-domain work (see data/collection.csv + data/provenance.jsonl), the
+# media clips are public domain (see PROVENANCE.md), and everything else is original generated art.
+# See CLAUDE.md §8 for every key and the theme.py hooks.
+
+name: public-domain
+title: "Public Domain Academy"
+# Migration-id hash namespace. NEVER change it for an existing theme: every Canvas object's
+# migration_id derives from it, so changing it makes re-imports duplicate instead of update.
+namespace: pda
+output: public-domain-academy.imscc
+commercial: true                # the test suite fails if any non-commercial theme's terms appear in the package
+
+brand_terms: [Public Domain Academy]
+
+catalog:
+  file: data/collection.csv     # curated by tools/curate_catalog.py (one-time, networked; the build only reads the CSV)
+  id: id
+  name: title
+  group: era                    # 1 = before 1800, 2 = 1800-1899, 3 = 1900-1930 (unit 1/2/3)
+  int_fields: [id, era, year, source_id]
+  image: "images/collection/era{era}/{id:03d}-{slug}.png"
+
+images:
+  source:
+    url: "{image_url}"          # per-row IIIF (Art Institute of Chicago) or Open Access (The Met) URL
+    cache: pd-open-access       # build/cache/pd-open-access/<id>.png
+    label: "AIC + Met open access (CC0)"
+    user_agent: "public-domain-academy-canvas-fixture/0.1 (+test course build; CC0 open-access images)"
+    max_size: 360
+  alt_fetched: "{title}, {artist} ({date_display})"
+  alt_placeholder: "Placeholder museum label for #{id:03d} {title}"
+  mask: pixelate                # paintings have no transparent background, so silhouettes don't work
+  masked_dir: images/mystery
+  masked_alt_fetched: "Mystery artwork (pixelated)"
+  masked_alt_placeholder: "Mystery museum label (title hidden)"
+  feedback_width: 215
+
+identify:
+  prompt: "Name that public-domain work!"
+  question_name: "Mystery work #{id:03d}"
+  correct: "It's {name} by {artist} ({date_display})!"
+  incorrect: "It's {name} by {artist} ({date_display}), catalog #{id:03d}."
+  choices: 4
+  points: 1
+
+seeder:
+  sis_prefix: pda
+  email_domain: pda.example.com
+  orientation_module: orientation
+  intro_discussion: introductions

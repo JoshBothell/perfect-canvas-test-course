@@ -1,0 +1,43 @@
+<h2>🧪 Developer Notes: Test Matrix</h2>
+<p>This page is <strong>unpublished</strong> on purpose (teachers can see it, students can't). It is generated from the course source, so it always matches what was built. The same matrix is in <code>docs/test-matrix/public-domain.md</code> in the generator repo.</p>
+<p><strong>Build anchor date:</strong> {{ course.dates.anchor.isoformat() }} · <strong>Time zone:</strong> {{ settings.time_zone }} · <strong>LTI module:</strong> {{ 'included' if lti else 'not included (no lti.yaml at build time)' }}</p>
+
+{% for m in course.modules %}
+<h3>{{ m.title }}</h3>
+<p style="font-size: 0.9em;">
+  State: {{ 'published' if m.get('published', True) else 'UNPUBLISHED' }}{% if m.get('unlock_at') %} · unlocks {{ date(m.unlock_at) }}{% endif %}{% if m.get('prerequisites') %} · prerequisites: {{ m.prerequisites|join(', ') }}{% endif %}{% if m.get('require_sequential_progress') %} · sequential progress{% endif %}{% if m.get('requirement_count') == 1 %} · complete ANY one requirement{% endif %}
+  {% if m.get('tests') %}<br />Module-level tests: {{ m.tests|join('; ') }}{% endif %}
+</p>
+{% if m['items'] %}
+<table border="1" cellpadding="4" style="border-collapse: collapse; width: 100%; font-size: 0.9em;">
+  <thead><tr><th scope="col">#</th><th scope="col">Item</th><th scope="col">Type</th><th scope="col">Requirement</th><th scope="col">What it tests</th></tr></thead>
+  <tbody>
+  {% for it in m['items'] %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ '&nbsp;&nbsp;' * it.indent }}{{ it.title|e }}</td>
+      <td>{{ it.content_type.replace('ContextModule', '') }}</td>
+      <td>{{ it.requirement or '' }}{% if it.min_score %} ≥ {{ it.min_score }}{% endif %}{% if it.min_percentage %} ≥ {{ it.min_percentage }}%{% endif %}</td>
+      <td>{{ it.tests|join('; ') }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p><em>(no items: empty module)</em></p>
+{% endif %}
+{% endfor %}
+
+<h3>Course-level objects (not in modules)</h3>
+<ul>
+  <li>Announcements: {% for a in course.announcements.values() %}"{{ a.title }}"{% if not loop.last %}, {% endif %}{% endfor %}</li>
+  <li>Calendar events: {% for e in course.events %}"{{ e.title }}"{% if not loop.last %}, {% endif %}{% endfor %}</li>
+  <li>Rubrics: {% for r in course.rubrics.values() %}"{{ r.title }}"{% if not loop.last %}, {% endif %}{% endfor %}</li>
+  <li>Outcomes: {% for o in course.outcomes.values() %}{{ o.title }} ({{ o.calculation_method }}){% if not loop.last %}, {% endif %}{% endfor %}</li>
+  <li>Grading schemes: {% for g in course.grading_standards.values() %}"{{ g.title }}"{% if not loop.last %}, {% endif %}{% endfor %}</li>
+  <li>Question banks: {% for b in course.banks.values() %}"{{ b.title }}"{% if not loop.last %}, {% endif %}{% endfor %}</li>
+  <li>Orphan page: {{ a_page('orphan-page') }}</li>
+</ul>
+
+<h3>Not in the cartridge (created by the seeder)</h3>
+<p>Sections, users and enrollments (teacher, TA, designer, observer, students incl. inactive/concluded), group membership, section/student/group due-date overrides, submissions, grades, rubric assessments, peer review assignments, moderated-grading graders, and the optional LTI 1.3 tool install.</p>

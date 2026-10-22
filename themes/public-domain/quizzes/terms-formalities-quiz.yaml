@@ -1,0 +1,101 @@
+key: terms-formalities-quiz
+title: "Terms & Formalities Quiz"
+quiz_type: assignment
+group: quizzes
+due: "+23d@23:59"
+unlock: "-1d@08:00"
+lock: "+26d@23:59"
+time_limit: 20
+allowed_attempts: 2
+scoring_policy: keep_highest
+shuffle_answers: true
+one_question_at_a_time: true
+cant_go_back: true
+show_correct_answers: false
+description: |
+  <p>Covers the question types that only exist in Canvas QTI (not plain Common Cartridge).
+  <strong>20-minute time limit</strong>, one question at a time, and no going back. Score 10+ to complete the module.</p>
+  <p>Section 2 draws 3 random questions from the <em>Terms &amp; Formalities Bank</em> question bank.</p>
+questions:
+  - type: text_only
+    name: "Instructions (text only)"
+    text: "<h3>Part 1: Terms and formalities</h3><p>Text-only items carry no points; they're used as section headers or passages.</p>"
+  - type: fill_in_multiple_blanks
+    name: "Fill in the ways in"
+    points: 3
+    text: "<p>A work enters the public domain when its term [expires], when it is a U.S. [government] work, or when its owner [dedicates] it.</p>"
+    blanks:
+      expires: [expires, Expires]
+      government: [government, Government]
+      dedicates: [dedicates, Dedicates]
+  - type: multiple_dropdowns
+    name: "Terms by era"
+    points: 2
+    text: "<p>A work published in 1925 with proper notice and renewal had a [term1]-year term. A work created by an individual author today lasts for life plus [term2] years.</p>"
+    blanks:
+      term1: {correct: "95", options: ["95", "56", "75", "28"]}
+      term2: {correct: "70", options: ["50", "70", "95", "100"]}
+  - type: numerical
+    name: "PD year (exact)"
+    points: 1
+    text: "<p>A work first published in the U.S. in 1930 enters the public domain on January 1 of which year?</p>"
+    answers: [{exact: 2026, margin: 0}]
+  - type: numerical
+    name: "Renewal rate (margin)"
+    points: 1
+    text: "<p>Studies of pre-1964 books estimate that only about what percent were ever renewed? (±10 accepted)</p>"
+    answers: [{exact: 10, margin: 10}]
+  - type: numerical
+    name: "Range answer"
+    points: 1
+    text: "<p>Name any year in which the U.S. had a 28-year initial copyright term (1909 Act, in force through 1977).</p>"
+    answers: [{range: [1909, 1977]}]
+  - type: numerical
+    name: "Precision answer"
+    points: 1
+    text: "<p>A 95-year term is how many centuries? (answer to 2 significant digits)</p>"
+    answers: [{approximate: 0.95, precision: 2}]
+  - type: calculated
+    name: "Life plus N formula"
+    points: 3
+    text: "<p>An author published a work in [P] at age [A] and died at age [D]. Under a life + [T] term, the work enters the public domain on January 1 of which year? (Assume the author's birthday falls before publication.)</p>"
+    formula: "P-A+D+T+1"
+    tolerance: 0.1
+    decimal_places: 1
+    sets: 10
+    variables:
+      - {name: P, min: 1900, max: 1950, scale: 0}
+      - {name: A, min: 20, max: 40, scale: 0}
+      - {name: D, min: 50, max: 90, scale: 0}
+      - {name: T, min: 50, max: 100, scale: 0}
+  - type: group
+    name: "Random term questions"
+    pick: 3
+    points_per_item: 1
+    bank: term-facts-bank
+  - type: essay
+    name: "Renewal essay"
+    points: 4
+    text: "<p>In 3–5 sentences, explain why a 1950s book might be in the public domain today even though its 95-year term hasn't run out. (Manually graded essay.)</p>"
+  - type: file_upload
+    name: "Upload your search log"
+    points: 2
+    text: "<p>Upload a screenshot or PDF of your renewal search results. (File upload question.)</p>"
+  - type: group
+    name: "Inline question group (pick 1 of 2)"
+    pick: 1
+    points_per_item: 1
+    questions:
+      - type: true_false
+        name: "1976 Act ended renewal for new works"
+        text: "<p>Works created on or after January 1, 1978 do not need to be renewed.</p>"
+        answer: true
+      - type: true_false
+        name: "State laws are PD"
+        text: "<p>Section 105 makes every U.S. state government work public domain.</p>"
+        answer: false
+  - type: group
+    name: "Bonus mystery works (2 of 386)"
+    pick: 2
+    points_per_item: 1
+    bank: name-that-work-bank

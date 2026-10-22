@@ -1,0 +1,28 @@
+key: johto-pokedex-bank
+bank: true
+title: "Johto Pokédex Bank"
+questions:
+  - type: multiple_choice
+    name: "Celebi type"
+    text: "<p>What is Celebi's type combination?</p>"
+    answers: [{text: "Psychic / Grass", correct: true}, {text: "Grass / Fairy"}, {text: "Psychic / Flying"}, {text: "Bug / Grass"}]
+  - type: multiple_choice
+    name: "Steelix pre-evolution"
+    text: "<p>Steelix evolves from which Pokémon?</p>"
+    answers: [{text: Onix, correct: true}, {text: Graveler}, {text: Magnemite}, {text: Skarmory}]
+  - type: true_false
+    name: "Togepi is a baby"
+    text: "<p>Togepi was introduced in Gen II.</p>"
+    answer: true
+  - type: short_answer
+    name: "Shiny Gyarados"
+    text: "<p>What color is the guaranteed shiny Gyarados at the Lake of Rage?</p>"
+    answers: [Red, red]
+  - type: multiple_answers
+    name: "Legendary beasts"
+    text: "<p>Select all of the legendary beasts.</p>"
+    answers: [{text: Raikou, correct: true}, {text: Entei, correct: true}, {text: Suicune, correct: true}, {text: Lugia}, {text: Ho-Oh}]
+  - type: multiple_choice
+    name: "Number of new species"
+    text: "<p>How many new species did Gen II add?</p>"
+    answers: [{text: "100", correct: true}, {text: "151"}, {text: "135"}, {text: "86"}]

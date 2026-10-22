@@ -1,0 +1,8 @@
+key: name-that-work-bank
+bank: true
+title: "Name That Work Bank (all 386)"
+questions:
+  # one masked-image question per catalog work #001–#386; distractor titles re-picked on every build
+  - type: generated
+    generator: identify
+    all: true

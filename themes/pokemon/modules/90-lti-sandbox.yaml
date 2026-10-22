@@ -1,0 +1,51 @@
+# Only built when themes/pokemon/lti.yaml (or --lti FILE) exists. See themes/pokemon/lti.example.yaml.
+# Tool keys referenced here ("primary") must exist under `tools:` in that file.
+key: lti-sandbox
+title: "🧰 LTI Sandbox"
+requires_lti: true
+published: true
+tests: [course-level ContextExternalTool from cartridge, LTI module items, external_tool assignment + line item, RCE LTI embed]
+items:
+  - type: subheader
+    title: "Launch points for your tool"
+  - type: external_tool
+    key: launch-inline
+    tool: primary
+    title: "LTI Launch (inline iframe)"
+    new_tab: false
+    tests: [ContextExternalTool module item, iframe launch, LtiResourceLinkRequest]
+  - type: external_tool
+    key: launch-new-tab
+    tool: primary
+    title: "LTI Launch (new tab)"
+    new_tab: true
+    tests: [module item launch in new tab]
+  - type: assignment
+    key: lti-graded-assignment
+    title: "LTI Graded Assignment (AGS)"
+    group: pokedex
+    points: 100
+    submission_types: [external_tool]
+    external_tool: primary
+    due: "+10d@23:59"
+    description: "<p>External-tool assignment: launches your tool, which can post scores back via AGS.</p>"
+    line_item: {coupled: true, tag: pta-ags-test, resource_id: pta-resource-1}
+    tests: [external_tool submission type, AGS line item, due date passed to tool]
+  - type: assignment
+    key: lti-new-tab-assignment
+    title: "LTI Assignment (opens in new tab, pass/fail)"
+    group: practice
+    points: 1
+    grading_type: pass_fail
+    submission_types: [external_tool]
+    external_tool: primary
+    external_tool_new_tab: true
+    tests: [external_tool new tab, pass_fail score passback]
+  - type: page
+    key: lti-embed-page
+    title: "Page with an embedded LTI launch (RCE)"
+    body: |
+      <p>Below is an LTI launch embedded through the Rich Content Editor (editor_button / Deep Linking result shape):</p>
+      <p><iframe style="width: 100%; height: 480px;" title="Embedded LTI tool" src="{{ course_link('external_tools/retrieve') }}?display=borderless&amp;url={{ lti.tools.primary.launch_url|urlencode }}" allowfullscreen="allowfullscreen" allow="geolocation *; microphone *; camera *; midi *; encrypted-media *; autoplay *; clipboard-write *; display-capture *"></iframe></p>
+      <p>And as a link: <a href="{{ course_link('external_tools/retrieve') }}?display=borderless&amp;url={{ lti.tools.primary.launch_url|urlencode }}">Launch via link</a></p>
+    tests: [RCE iframe embed via /external_tools/retrieve, link to tool launch]

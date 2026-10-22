@@ -1,0 +1,101 @@
+key: johto-gym-quiz
+title: "Johto Gym Battle Quiz"
+quiz_type: assignment
+group: gym
+due: "+23d@23:59"
+unlock: "-1d@08:00"
+lock: "+26d@23:59"
+time_limit: 20
+allowed_attempts: 2
+scoring_policy: keep_highest
+shuffle_answers: true
+one_question_at_a_time: true
+cant_go_back: true
+show_correct_answers: false
+description: |
+  <p>Covers the question types that only exist in Canvas QTI (not plain Common Cartridge).
+  <strong>20-minute time limit</strong>, one question at a time, and no going back. Score 10+ to complete the module.</p>
+  <p>Section 2 draws 3 random questions from the <em>Johto Pokédex Bank</em> question bank.</p>
+questions:
+  - type: text_only
+    name: "Instructions (text only)"
+    text: "<h3>Part 1: Johto facts</h3><p>Text-only items carry no points; they're used as section headers or passages.</p>"
+  - type: fill_in_multiple_blanks
+    name: "Fill in the starters"
+    points: 3
+    text: "<p>The Johto starters are [grass], [fire] and [water].</p>"
+    blanks:
+      grass: [Chikorita, chikorita]
+      fire: [Cyndaquil, cyndaquil]
+      water: [Totodile, totodile]
+  - type: multiple_dropdowns
+    name: "Gym types"
+    points: 2
+    text: "<p>Whitney's Gym uses [type1]-type Pokémon, and Morty's Gym uses [type2]-type Pokémon.</p>"
+    blanks:
+      type1: {correct: Normal, options: [Normal, Fighting, Fairy, Psychic]}
+      type2: {correct: Ghost, options: [Dark, Ghost, Psychic, Poison]}
+  - type: numerical
+    name: "Dex number (exact)"
+    points: 1
+    text: "<p>What is Lugia's National Pokédex number?</p>"
+    answers: [{exact: 249, margin: 0}]
+  - type: numerical
+    name: "Weight (margin)"
+    points: 1
+    text: "<p>Snorlax weighs about how many kilograms? (±10 kg accepted)</p>"
+    answers: [{exact: 460, margin: 10}]
+  - type: numerical
+    name: "Range answer"
+    points: 1
+    text: "<p>Name any National Pokédex number belonging to Gen II.</p>"
+    answers: [{range: [152, 251]}]
+  - type: numerical
+    name: "Precision answer"
+    points: 1
+    text: "<p>STAB multiplies damage by what factor? (answer to 2 significant digits)</p>"
+    answers: [{approximate: 1.5, precision: 2}]
+  - type: calculated
+    name: "Damage formula"
+    points: 3
+    text: "<p>A level [L] Pokémon uses a [P]-power move. Its Attack is [A] and the target's Defense is [D]. Using damage = ((2×L/5 + 2) × P × A/D)/50 + 2, how much damage is dealt (before modifiers)? Round to 1 decimal place.</p>"
+    formula: "((2*L/5+2)*P*A/D)/50+2"
+    tolerance: 0.1
+    decimal_places: 1
+    sets: 10
+    variables:
+      - {name: L, min: 10, max: 50, scale: 0}
+      - {name: P, min: 40, max: 120, scale: 0}
+      - {name: A, min: 50, max: 150, scale: 0}
+      - {name: D, min: 50, max: 150, scale: 0}
+  - type: group
+    name: "Random Pokédex questions"
+    pick: 3
+    points_per_item: 1
+    bank: johto-pokedex-bank
+  - type: essay
+    name: "Strategy essay"
+    points: 4
+    text: "<p>In 3–5 sentences, explain how you would beat Clair's Kingdra. (Manually graded essay.)</p>"
+  - type: file_upload
+    name: "Upload your team sheet"
+    points: 2
+    text: "<p>Upload a screenshot or PDF of your current team. (File upload question.)</p>"
+  - type: group
+    name: "Inline question group (pick 1 of 2)"
+    pick: 1
+    points_per_item: 1
+    questions:
+      - type: true_false
+        name: "Shinies exist from Gen II"
+        text: "<p>Shiny Pokémon were introduced in Gen II.</p>"
+        answer: true
+      - type: true_false
+        name: "Steel type is Gen I"
+        text: "<p>The Steel type was introduced in Gen I.</p>"
+        answer: false
+  - type: group
+    name: "Bonus silhouettes (2 of 386)"
+    pick: 2
+    points_per_item: 1
+    bank: whos-that-pokemon-bank

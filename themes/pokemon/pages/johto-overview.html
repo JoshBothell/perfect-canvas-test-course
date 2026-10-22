@@ -1,0 +1,32 @@
+{{ img('images/regions/johto.png', 'Gen II: Johto banner, gold, silver and teal gradient', style='width: 100%; height: auto; border-radius: 10px;') }}
+<h2>Welcome to Johto</h2>
+<p>Johto is the setting of <em>Pokémon Gold, Silver and Crystal</em> (1999–2000). Gen II added <strong>100 species</strong> (#152–#251), the <strong>Dark</strong> and <strong>Steel</strong> types, held items, breeding, a real-time clock, and shiny Pokémon.</p>
+<p><strong>This module uses sequential progress:</strong> you must complete each requirement in order. It unlocks only after you complete Kanto.</p>
+
+{% set g2 = catalog_group(2) %}
+<h3>New in Gen II</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Feature</th><th scope="col">Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td>Day/night cycle</td><td>Different Pokémon appear at different times. See {{ a_page('pokegear-clock') }}.</td></tr>
+    <tr><td>Breeding & eggs</td><td>Baby Pokémon such as {% for m in g2 if m.genus.endswith('Pokémon') and m.name in ['Pichu','Cleffa','Igglybuff','Togepi','Tyrogue','Smoochum','Elekid','Magby'] %}{{ m.name }}{% if not loop.last %}, {% endif %}{% endfor %}.</td></tr>
+    <tr><td>Two new types</td><td>{{ type_badge('Dark') }} {{ type_badge('Steel') }}</td></tr>
+  </tbody>
+</table>
+
+<h3>Johto starters</h3>
+<p>{% for n in ['Chikorita','Bayleef','Meganium','Cyndaquil','Quilava','Typhlosion','Totodile','Croconaw','Feraligatr'] %}{{ entry_image(entry(n), 96) }} {% endfor %}</p>
+
+<h3>Legendary birds of Johto</h3>
+<ul>{% for m in g2 if m.legendary == '1' or m.mythical == '1' %}<li>{{ entry_image(m, 48) }} <strong>{{ m.name }}</strong>: {{ m.genus }} ({{ m.types|join('/') }})</li>{% endfor %}</ul>
+
+<h3>Assignments in this module</h3>
+<p>Johto has one assignment for each Canvas <strong>grading type</strong>, plus group work and peer review:</p>
+<ul>
+  <li>{{ a_assignment('johto-letter-grade') }}</li>
+  <li>{{ a_assignment('johto-gpa') }}</li>
+  <li>{{ a_assignment('johto-percent') }}</li>
+  <li>{{ a_assignment('pokegear-setup') }}</li>
+  <li>{{ a_assignment('breeding-journal') }}</li>
+  <li>{{ a_assignment('team-rocket-raid') }} · {{ a_assignment('ruins-of-alph') }} · {{ a_assignment('breeding-guide-peer-review') }}</li>
+</ul>

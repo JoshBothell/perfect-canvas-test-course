@@ -1,0 +1,285 @@
+# Pokémon Trainer Academy: course-level settings and course-wide objects.
+# Relative dates ("+7d@23:59") resolve against the build anchor (default: today) in time_zone.
+# See docs/TEST_MATRIX.md for what each object is meant to exercise.
+
+title: "Pokémon Trainer Academy: Gen I–III"
+course_code: PTA-151
+time_zone: America/Denver
+locale: en
+start: "-30d@00:00"
+end: "+120d@23:59"
+image: images/course-card.png
+banner_image: images/course-banner.png
+default_view: wiki                 # front page = "Welcome, Trainer!"
+default_grading_standard: badge-tiers
+group_weighting_scheme: percent    # weighted assignment groups
+default_wiki_editing_roles: teachers
+license: private
+post_manually: false
+
+flags:
+  allow_student_discussion_topics: true
+  allow_student_discussion_editing: true
+  allow_student_forum_attachments: true
+  allow_student_organized_groups: true
+  show_announcements_on_home_page: true
+  home_page_announcement_limit: 3
+  hide_final_grade: false
+  hide_distribution_graphs: false
+  restrict_student_future_view: false
+  restrict_student_past_view: false
+  restrict_enrollments_to_course_dates: false
+  lock_all_announcements: false
+  usage_rights_required: false
+  syllabus_course_summary: true
+  filter_speed_grader_by_student_group: false
+
+# Course navigation order. "lti:<tool>" entries only appear when themes/pokemon/lti.yaml defines the tool.
+tabs:
+  - home
+  - modules
+  - announcements
+  - syllabus
+  - assignments
+  - discussions
+  - quizzes
+  - grades
+  - people
+  - pages
+  - files
+  - groups
+  - lti:primary
+  - {tab: outcomes, hidden: true}
+  - {tab: rubrics, hidden: true}
+  - {tab: collaborations, hidden: true}
+  - {tab: conferences, hidden: true}
+
+late_policy:
+  late_deduction_enabled: true
+  late_deduction: 10.0
+  late_interval: day
+  minimum_percent_enabled: true
+  minimum_percent: 50.0
+  missing_deduction_enabled: false
+  missing_deduction: 0.0
+
+assignment_groups:
+  - {key: pokedex,   title: "Pokédex Entries",              weight: 25, rules: {drop_lowest: 1}}
+  - {key: gym,       title: "Gym Battles (Quizzes)",        weight: 25}
+  - {key: talk,      title: "Trainer Talk (Discussions)",   weight: 15}
+  - {key: elite,     title: "Elite Four (Exams)",           weight: 30, rules: {drop_lowest: 1, never_drop: [hoenn-regional-exam-b]}}
+  - {key: extra,     title: "Extra Credit",                 weight: 5}
+  - {key: practice,  title: "Practice & Ungraded",          weight: 0}
+
+grading_standards:
+  - key: badge-tiers
+    title: "Badge Tiers (letter scheme)"
+    data:
+      - ["Champion", 0.93]
+      - ["Elite Four", 0.85]
+      - ["Gym Leader", 0.75]
+      - ["Ace Trainer", 0.65]
+      - ["Youngster", 0.0]
+  - key: classic-letter
+    title: "Classic A–F"
+    data:
+      - ["A", 0.94]
+      - ["A-", 0.90]
+      - ["B+", 0.87]
+      - ["B", 0.84]
+      - ["B-", 0.80]
+      - ["C+", 0.77]
+      - ["C", 0.74]
+      - ["C-", 0.70]
+      - ["D", 0.60]
+      - ["F", 0.0]
+  - key: gpa-4
+    title: "GPA 4.0 Scale (points-based)"
+    points_based: true
+    scaling_factor: 4.0
+    data:
+      - ["4.0", 0.95]
+      - ["3.5", 0.875]
+      - ["3.0", 0.75]
+      - ["2.5", 0.625]
+      - ["2.0", 0.5]
+      - ["1.0", 0.25]
+      - ["0.0", 0.0]
+
+outcomes:
+  group:
+    key: trainer-competencies
+    title: "Trainer Competencies"
+    description: "Course-level outcome group. Each outcome uses a different calculation method."
+  outcomes:
+    - key: type-mastery
+      title: "TC.1 Type Matchups"
+      description: "<p>Predicts damage multipliers for single- and dual-type matchups.</p>"
+      calculation_method: decaying_average
+      calculation_int: 65
+      points_possible: 4
+      mastery_points: 3
+      ratings: &ratings4
+        - {description: "Exceeds Mastery", points: 4}
+        - {description: "Mastery", points: 3}
+        - {description: "Near Mastery", points: 2}
+        - {description: "Below Mastery", points: 1}
+        - {description: "No Evidence", points: 0}
+    - key: team-building
+      title: "TC.2 Team Building"
+      description: "<p>Builds a balanced team with justified type coverage.</p>"
+      calculation_method: highest
+      points_possible: 4
+      mastery_points: 3
+      ratings: *ratings4
+    - key: research
+      title: "TC.3 Field Research"
+      description: "<p>Records accurate, sourced Pokédex observations.</p>"
+      calculation_method: n_mastery
+      calculation_int: 2
+      points_possible: 4
+      mastery_points: 3
+      ratings: *ratings4
+    - key: sportsmanship
+      title: "TC.4 Sportsmanship & Communication"
+      description: "<p>Communicates strategy clearly and respectfully.</p>"
+      calculation_method: latest
+      points_possible: 4
+      mastery_points: 3
+      ratings: *ratings4
+
+rubrics:
+  - key: pokedex-entry
+    title: "Pokédex Entry Rubric"
+    criteria:
+      - description: "Accuracy"
+        long_description: "Species facts (type, region, evolution) are correct."
+        points: 4
+        outcome: research
+        ratings:
+          - {description: "Exceeds Mastery", points: 4}
+          - {description: "Mastery", points: 3}
+          - {description: "Near Mastery", points: 2}
+          - {description: "Below Mastery", points: 1}
+          - {description: "No Evidence", points: 0}
+      - description: "Observation Detail"
+        long_description: "Includes habitat, behavior and at least one original observation."
+        points: 4
+        ratings:
+          - {description: "Vivid", points: 4}
+          - {description: "Solid", points: 3}
+          - {description: "Thin", points: 1}
+          - {description: "Missing", points: 0}
+      - description: "Presentation"
+        points: 2
+        use_range: true
+        ratings:
+          - {description: "Polished", points: 2}
+          - {description: "Readable", points: 1}
+          - {description: "Hard to read", points: 0}
+  - key: battle-strategy
+    title: "Battle Strategy (free-form comments)"
+    free_form_criterion_comments: true
+    criteria:
+      - description: "Type Coverage"
+        points: 4
+        outcome: type-mastery
+        ratings:
+          - {description: "Exceeds Mastery", points: 4}
+          - {description: "Mastery", points: 3}
+          - {description: "Near Mastery", points: 2}
+          - {description: "Below Mastery", points: 1}
+          - {description: "No Evidence", points: 0}
+      - description: "Justification"
+        points: 5
+        ratings:
+          - {description: "Full marks", points: 5}
+          - {description: "No marks", points: 0}
+      - description: "Participation note (not scored)"
+        points: 1
+        ignore_for_scoring: true
+        ratings:
+          - {description: "Noted", points: 1}
+          - {description: "-", points: 0}
+  - key: contest-judging
+    title: "Contest Judging (hidden score total)"
+    hide_score_total: true
+    criteria:
+      - description: "Coolness"
+        points: 10
+        ratings: &contest
+          - {description: "Dazzling", points: 10}
+          - {description: "Good", points: 6}
+          - {description: "Plain", points: 2}
+      - description: "Beauty"
+        points: 10
+        ratings: *contest
+      - description: "Cuteness"
+        points: 10
+        ratings: *contest
+      - description: "Smartness"
+        points: 10
+        ratings: *contest
+      - description: "Toughness"
+        points: 10
+        ratings: *contest
+
+# Files: per-file metadata (anything not listed here is a plain, visible file).
+folders:
+  "Professor's Archive": {hidden: true, locked: true}
+  "media": {unlock_at: "-30d@00:00"}
+files:
+  "Professor's Archive/answer-key.pdf": {locked: true, hidden: true}
+  "documents/type-chart.pdf":
+    usage_rights: {use_justification: own_copyright, legal_copyright: "(c) Pokémon Trainer Academy test fixture", license: private}
+  "data/encounter-log-10k.csv": {display_name: "Encounter Log (10,000 rows).csv"}
+  "data/team_builder.py": {lock_at: "+60d@23:59"}
+
+syllabus: {file: pages/syllabus.html}
+
+events:
+  - key: office-hours
+    title: "Professor Oak's Office Hours"
+    description: "<p>Weekly recurring event (6-week series). Drop in with questions about evolutions.</p>"
+    start: "-7d@15:00"
+    end: "-7d@16:30"
+    repeat_weekly: 6
+  - key: pokemon-day
+    title: "Pokémon Day 🎉"
+    description: "<p>All-day event.</p>"
+    start: "+3d"
+    all_day: true
+  - key: safari-weekend
+    title: "Safari Zone Weekend"
+    description: "<p>Multi-day event (Friday 17:00 through Sunday 20:00).</p>"
+    start: "+9d@17:00"
+    end: "+11d@20:00"
+  - key: dst-night
+    title: "Night Safari (spans the DST change)"
+    description: "<p>Starts before and ends after the next daylight-saving transition. Duration depends on correct TZ handling.</p>"
+    start: "dst_next@00:00"
+    end: "dst_next@04:00"
+
+announcements:
+  - key: welcome
+    title: "Welcome to the Academy, Trainers!"
+    message: |
+      <p>Your journey begins in <strong>Pallet Town</strong>. Start with {{ a_page('welcome') }} and then open {{ a_page('how-this-course-works') }}.</p>
+      <p>Office hours are on the calendar every week.</p>
+  - key: route-closure
+    title: "Route 22 closure: comments locked"
+    locked: true
+    message: "<p>Comments on this announcement are locked. Use it to test read-only announcement replies.</p>"
+  - key: future-hoenn
+    title: "Hoenn region opens soon (delayed post)"
+    delayed_post_at: "+14d@08:00"
+    message: "<p>This announcement is scheduled. It should not be visible to students until it posts.</p>"
+
+pages:
+  - key: developer-notes
+    title: "🧪 Developer Notes: Test Matrix"
+    published: false
+    body: {file: pages/developer-notes.html}
+  - key: orphan-page
+    title: "Orphan Page (not in any module)"
+    body: "<p>This page is published but not placed in any module, so it is only reachable from the Pages index or a direct link. Useful for testing content discovery that relies only on Modules.</p>"

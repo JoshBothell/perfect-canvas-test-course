@@ -1,0 +1,15 @@
+# Copy to seeder/config.toml (gitignored). Use a SANDBOX / beta / test instance, never production.
+base_url = "https://YOUR-INSTITUTION.beta.instructure.com"
+# token = "..."            # or export CANVAS_TOKEN=...; needs account admin (create users) + "Become other users" for masquerade
+account_id = 1             # sub-account to create the course and users in
+# course_id = 12345        # optional: seed into an existing course instead of creating one
+# theme = "pokemon"        # default theme for seed/verify/teardown (--theme / -p override; built-in default: public-domain)
+# sis_prefix / email_domain default to the theme's theme.yaml `seeder` values (public-domain: pda, pda.example.com; pokemon: pta, pta.example.com).
+# Only set them here to override: SIS ids become <prefix>-course, <prefix>-sec-<section>, <prefix>-<user>.
+# sis_prefix = "pta"
+# email_domain = "pta.example.com"
+masquerade = true          # student activity (progress, posts, submissions) via as_user_id
+# user_password = "Pallet-Town-151!"   # optional: lets you log in as the seeded users
+# anchor = "2026-10-21"    # must match the --anchor used for `cc build` if you passed one
+# lti_client_id = "10000000000001"     # optional: install an LTI 1.3 tool (developer key) in the course
+verbose = false

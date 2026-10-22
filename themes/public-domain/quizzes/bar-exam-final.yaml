@@ -1,0 +1,97 @@
+key: bar-exam-final
+title: "Public Domain Bar Exam (Final)"
+quiz_type: assignment
+group: exams
+due: "+35d@23:59"
+unlock: "+14d@08:00"
+lock: "+38d@23:59"
+time_limit: 60
+allowed_attempts: 1
+access_code: "CC0"
+shuffle_answers: true
+show_correct_answers: true
+show_correct_answers_at: "+39d@08:00"
+hide_correct_answers_at: "+60d@08:00"
+one_time_results: false
+description: |
+  <p>The final exam uses <strong>every Classic Quiz question type</strong> once, so a single quiz exercises your quiz tooling end-to-end. It ends with three mystery works drawn from the 386-question bank.</p>
+  <p><strong>Access code:</strong> <code>CC0</code> · 60-minute limit · one attempt · correct answers revealed after the exam window closes.</p>
+questions:
+  - type: text_only
+    name: "Reading passage"
+    text: |
+      <h3>Passage: Bridgeman v. Corel (S.D.N.Y. 1999)</h3>
+      <p>Corel sold a CD-ROM of photographs of public-domain paintings. Bridgeman claimed copyright in its own photographs of those paintings. The court held that exact photographic copies of two-dimensional public-domain works lack the originality copyright requires.</p>
+  - type: multiple_choice
+    name: "Bridgeman holding"
+    points: 2
+    text: "<p>What did <em>Bridgeman v. Corel</em> hold about faithful photos of 2D public-domain art?</p>"
+    answers: [{text: "They are not original enough to be copyrighted", correct: true}, {text: "They get a new 95-year term"}, {text: "They are trademarks"}, {text: "They are government works"}]
+  - type: true_false
+    name: "Steamboat Willie"
+    points: 2
+    text: "<p>The 1928 film <em>Steamboat Willie</em> entered the U.S. public domain on January 1, 2024.</p>"
+    answer: true
+  - type: multiple_answers
+    name: "Still protected"
+    points: 2
+    text: "<p>A public-domain story is adapted into a new film. Select every element that may still be protected.</p>"
+    answers: [{text: "New dialogue written for the film", correct: true}, {text: "New characters added by the screenwriter", correct: true}, {text: "Trademarks used as brand names", correct: true}, {text: "The original story's plot"}, {text: "The original story's text"}]
+  - type: short_answer
+    name: "Dedication tool"
+    points: 2
+    text: "<p>Which Creative Commons tool lets an owner waive all their copyright and dedicate a work to the public domain?</p>"
+    answers: [CC0, cc0, CC Zero]
+  - type: fill_in_multiple_blanks
+    name: "Shorter term"
+    points: 2
+    text: "<p>Under the rule of the [rule] term, a country may stop protecting a foreign work when it has entered the public domain in its [origin] country.</p>"
+    blanks:
+      rule: [shorter, Shorter]
+      origin: [origin, home]
+  - type: multiple_dropdowns
+    name: "Term regimes"
+    points: 3
+    text: "<p>The EU term for authors is life + [eu] years, the Berne minimum is life + [berne] years, and Mexico's term is life + [mx] years.</p>"
+    blanks:
+      eu: {correct: "70", options: ["70", "50", "100"]}
+      berne: {correct: "50", options: ["25", "50", "70"]}
+      mx: {correct: "100", options: ["100", "70", "95"]}
+  - type: matching
+    name: "Match the law"
+    points: 4
+    text: "<p>Match each U.S. law to what it did.</p>"
+    pairs:
+      - {left: "Copyright Act of 1790", right: "First federal copyright law"}
+      - {left: "Copyright Act of 1909", right: "28-year term plus renewal"}
+      - {left: "Copyright Act of 1976", right: "Life-based terms for new works"}
+      - {left: "Music Modernization Act", right: "Pre-1923 sound recordings to PD"}
+    distractors: [Patent bars, Trademark dilution]
+  - type: numerical
+    name: "Bar exam year"
+    points: 2
+    text: "<p>A work published in the U.S. in 1929 entered the public domain on January 1 of which year?</p>"
+    answers: [{exact: 2025}]
+  - type: calculated
+    name: "Term arithmetic"
+    points: 3
+    text: "<p>An author died in [B]. Under a life + 70 term, the work enters the public domain on January 1 of which year? (B + 70 + 1)</p>"
+    formula: "B+71"
+    tolerance: 0
+    decimal_places: 0
+    sets: 8
+    variables:
+      - {name: B, min: 1900, max: 1990, scale: 0}
+  - type: essay
+    name: "Status analysis"
+    points: 6
+    text: "<p>Choose any work in the course collection and analyze its public-domain status in the U.S. and the EU.</p>"
+  - type: file_upload
+    name: "Brief upload"
+    points: 2
+    text: "<p>Upload your final brief.</p>"
+  - type: group
+    name: "Final round: mystery works (3 of 386)"
+    pick: 3
+    points_per_item: 2
+    bank: name-that-work-bank

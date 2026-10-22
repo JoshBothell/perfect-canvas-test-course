@@ -1,0 +1,11 @@
+# Client example exports: structure reference only, NEVER commit or ship
+examples/
+dist/
+build/
+.venv/
+__pycache__/
+*.pyc
+seeder/config.toml
+themes/*/lti.yaml
+.pytest_cache/
+.DS_Store

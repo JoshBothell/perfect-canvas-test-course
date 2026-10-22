@@ -1,0 +1,10 @@
+<h2>Contest Hall Gallery</h2>
+<p>Thirty contest entrants, arranged in a responsive grid of inline-block figures with captions.</p>
+<div>
+{% for m in catalog_group(3)[:30] %}
+  <figure style="display: inline-block; margin: 6px; text-align: center; width: 128px;">
+    {{ entry_image(m, 120) }}
+    <figcaption style="font-size: 0.8em;">#{{ '%03d' % m.dex }} {{ m.name }}<br />{{ m.types|join(' / ') }}</figcaption>
+  </figure>
+{% endfor %}
+</div>

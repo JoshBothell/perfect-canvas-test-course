@@ -1,0 +1,180 @@
+key: gen2-johto
+title: "🟡 Gen II: Johto"
+published: true
+prerequisites: [gen1-kanto]
+require_sequential_progress: true
+tests: [prerequisite on Gen I, sequential progress, every grading type, group sets, peer review, question banks + groups, surveys]
+items:
+  - type: subheader
+    title: "📖 Learn"
+  - type: page
+    key: johto-overview
+    title: "Johto Overview"
+    body: {file: pages/johto-overview.html}
+    requirement: must_view
+  - type: page
+    key: pokegear-clock
+    title: "Day, Night & the Pokégear Clock"
+    body: {file: pages/pokegear-clock.html}
+    requirement: must_view
+    indent: 1
+    tests: [dates rendered in course TZ, todo_date (student To-Do list)]
+    todo_date: "+2d@09:00"
+  - type: page
+    key: breeding-notes-wiki
+    title: "Breeding Notes Wiki (students can edit)"
+    editing_roles: "teachers,students"
+    body: |
+      <h2>Breeding Notes Wiki</h2>
+      <p>This page is editable by <strong>students</strong> (editing_roles = teachers,students). Add one breeding tip below and sign it.</p>
+      <ul><li>Ditto can breed with almost anything. (Prof. Elm)</li></ul>
+    indent: 1
+    tests: [student-editable page, page revision history]
+  - type: file
+    path: data/encounter-log-10k.csv
+    title: "Encounter Log (10,000 rows)"
+    indent: 1
+    tests: [large CSV preview, display_name differs from filename]
+
+  - type: subheader
+    title: "✍️ Practice: every grading type"
+  - type: assignment
+    key: johto-letter-grade
+    title: "Pokédex Entry: Johto Legendaries (letter grade)"
+    group: pokedex
+    points: 20
+    grading_type: letter_grade
+    grading_standard: badge-tiers
+    submission_types: [online_text_entry]
+    rubric: pokedex-entry
+    due: "+16d@23:59"
+    description: "<p>Write an entry about Lugia, Ho-Oh or Celebi. Displayed as a <strong>Badge Tiers</strong> letter grade.</p>"
+    requirement: must_submit
+    tests: [grading_type=letter_grade, assignment-level grading scheme]
+  - type: assignment
+    key: johto-gpa
+    title: "Berry Farming Report (GPA scale)"
+    group: pokedex
+    points: 4
+    grading_type: gpa_scale
+    grading_standard: gpa-4
+    submission_types: [online_text_entry, online_upload]
+    due: "+17d@23:59"
+    description: "<p>Graded on the GPA 4.0 scale.</p>"
+    tests: [grading_type=gpa_scale, points-based grading scheme]
+  - type: assignment
+    key: johto-percent
+    title: "Apricorn Ball Crafting (percentage)"
+    group: pokedex
+    points: 15
+    grading_type: percent
+    submission_types: [online_upload]
+    allowed_extensions: [pdf, docx]
+    due: "+18d@23:59"
+    description: "<p>Graded and displayed as a percentage.</p>"
+    tests: [grading_type=percent]
+  - type: assignment
+    key: pokegear-setup
+    title: "Pokégear Setup (complete/incomplete)"
+    group: practice
+    points: 1
+    grading_type: pass_fail
+    submission_types: [online_text_entry]
+    due: "+15d@12:00"
+    description: "<p>Tell us which Pokégear cards you unlocked. Complete/incomplete.</p>"
+    requirement: must_submit
+    tests: [grading_type=pass_fail]
+  - type: assignment
+    key: breeding-journal
+    title: "Breeding Journal (not graded)"
+    group: practice
+    grading_type: not_graded
+    submission_types: [online_text_entry]
+    due: "+19d@23:59"
+    description: "<p>Optional journal. Not graded; does not appear in the gradebook total.</p>"
+    tests: [grading_type=not_graded with submissions]
+  - type: assignment
+    key: unown-extra-credit
+    title: "Unown Alphabet Hunt (extra credit)"
+    group: extra
+    points: 0
+    submission_types: [online_text_entry]
+    due: "+25d@23:59"
+    description: "<p>0 points possible in a 5% group: any points awarded are <strong>extra credit</strong>.</p>"
+    tests: [extra credit (0 points possible), weighted extra-credit group]
+
+  - type: subheader
+    title: "👥 Groups & Peers"
+  - type: assignment
+    key: team-rocket-raid
+    title: "Team Rocket Hideout Raid (group assignment)"
+    group: pokedex
+    points: 25
+    submission_types: [online_upload, online_text_entry]
+    group_category: "Johto Rivals"
+    grade_group_students_individually: false
+    due: "+20d@23:59"
+    description: "<p>Your group submits one raid plan. Everyone in the group receives the same grade.</p>"
+    tests: [group assignment (one grade per group), group set created on import, group override (seeder)]
+  - type: assignment
+    key: ruins-of-alph
+    title: "Ruins of Alph Research (group, graded individually)"
+    group: pokedex
+    points: 20
+    submission_types: [online_text_entry]
+    group_category: "Johto Rivals"
+    grade_group_students_individually: true
+    due: "+21d@23:59"
+    description: "<p>Group submission; each member is graded separately.</p>"
+    tests: [grade_group_students_individually]
+  - type: assignment
+    key: breeding-guide-peer-review
+    title: "Write a Breeding Guide (peer reviewed)"
+    group: pokedex
+    points: 15
+    submission_types: [online_text_entry, online_upload]
+    peer_reviews: true
+    automatic_peer_reviews: true
+    peer_review_count: 2
+    anonymous_peer_reviews: true
+    peer_reviews_due: "+24d@23:59"
+    due: "+22d@23:59"
+    rubric: pokedex-entry
+    description: "<p>Submit a breeding guide, then review two classmates' guides anonymously.</p>"
+    tests: [automatic anonymous peer reviews, peer_reviews_due_at]
+  - type: discussion
+    key: rival-strategy-room
+    title: "Rival Strategy Room (group discussion)"
+    group_category: "Johto Rivals"
+    discussion_type: threaded
+    message: "<p>Each group gets its own copy of this discussion. Plan your Team Rocket raid here.</p>"
+    tests: [group discussion (one topic per group)]
+  - type: discussion
+    key: radio-tower-archive
+    title: "Radio Tower Archive (locked discussion)"
+    discussion_type: flat
+    lock_at: "-1d@12:00"
+    message: "<p>This flat (non-threaded) discussion locked yesterday. Students can read but not reply.</p>"
+    tests: [flat discussion, lock_at in the past]
+
+  - type: subheader
+    title: "⚔️ Battle"
+  - type: quiz
+    key: johto-gym-quiz
+    requirement: min_score
+    min_score: 10
+    tests: [fill-in-multiple-blanks, multiple dropdowns, numerical (exact/margin/range/precision), formula, essay, file upload, text-only, bank question group, time limit, cant_go_back]
+  - type: quiz
+    key: wtp-lightning-round
+    indent: 1
+    requirement: min_percentage
+    min_percentage: 70
+    tests: [3-minute time limit, keep_average scoring, hide_results until_after_last_attempt, min_percentage requirement, 10-question bank draw]
+  - type: quiz
+    key: favorite-johto-starter
+    indent: 1
+    tests: [graded survey]
+  - type: quiz
+    key: course-feedback-survey
+    indent: 1
+    tests: [ungraded anonymous survey]

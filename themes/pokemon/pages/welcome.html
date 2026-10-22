@@ -1,0 +1,60 @@
+<div style="border-radius: 12px; overflow: hidden; margin-bottom: 18px;">
+  {{ img('images/course-card.png', 'Pokémon Trainer Academy banner: red, yellow and blue gradient with concentric badge rings', style='width: 100%; height: auto; display: block;') }}
+</div>
+
+<h2>Welcome to the Pokémon Trainer Academy!</h2>
+<p>This course follows a trainer's journey through the first three generations of Pokémon: <strong>Kanto</strong>, <strong>Johto</strong>, and <strong>Hoenn</strong>. Each region is one module. Along the way you'll read field guides, file Pokédex entries, battle through quizzes, and debate strategy with your rivals.</p>
+
+<div style="background: #fff8db; border-left: 6px solid #ffcb05; padding: 12px 16px; margin: 16px 0;">
+  <p style="margin: 0;"><strong>For developers:</strong> this is a test fixture course. The Pokémon theme is filler. Every item exists to exercise a native Canvas feature. The unpublished page {{ a_page('developer-notes') }} lists what each item tests.</p>
+</div>
+
+<h3>Your Journey</h3>
+<table style="width: 100%; border-collapse: collapse;" border="1" cellpadding="8">
+  <caption>Course modules and what you'll do in each</caption>
+  <thead>
+    <tr style="background: #3b4cca; color: #ffffff;">
+      <th scope="col">Region</th>
+      <th scope="col">Starter Pokémon</th>
+      <th scope="col">Highlights</th>
+      <th scope="col">Unlocks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">🔴 Gen I: Kanto</th>
+      <td>{% for n in ['Bulbasaur','Charmander','Squirtle'] %}{{ entry_image(entry(n), 48) }} {% endfor %}</td>
+      <td>{{ a_page('kanto-overview') }}, {{ a_assignment('choose-your-starter') }}, {{ a_quiz('kanto-gym-quiz') }}</td>
+      <td>Immediately</td>
+    </tr>
+    <tr>
+      <th scope="row">🟡 Gen II: Johto</th>
+      <td>{% for n in ['Chikorita','Cyndaquil','Totodile'] %}{{ entry_image(entry(n), 48) }} {% endfor %}</td>
+      <td>{{ a_page('johto-overview') }}, {{ a_assignment('team-rocket-raid') }}, {{ a_quiz('johto-gym-quiz') }}</td>
+      <td>After completing Kanto</td>
+    </tr>
+    <tr>
+      <th scope="row">🔵 Gen III: Hoenn</th>
+      <td>{% for n in ['Treecko','Torchic','Mudkip'] %}{{ entry_image(entry(n), 48) }} {% endfor %}</td>
+      <td>{{ a_page('hoenn-overview') }}, {{ a_assignment('contest-hall-judging') }}, {{ a_quiz('elite-four-final') }}</td>
+      <td>{{ date('+14d@08:00', '%B %-d') }} <em>and</em> after completing Johto</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Quick Links</h3>
+<p>
+  <a class="btn btn-primary" href="{{ course_link('modules') }}">Go to Modules</a>
+  <a class="btn" href="{{ course_link('assignments/syllabus') }}">Syllabus</a>
+  <a class="btn" href="{{ course_link('grades') }}">Grades</a>
+  <a class="btn" href="{{ course_link('announcements') }}">Announcements</a>
+  <a class="btn" href="{{ course_link('files') }}">Files</a>
+</p>
+<ul>
+  <li>First stop: {{ a_page('how-this-course-works') }}</li>
+  <li>Say hello: {{ a_discussion('introductions') }}</li>
+  <li>Reference: {{ a_file('documents/type-chart.pdf', 'Type Matchup Chart (PDF)') }} · {{ a_file('data/pokedex_1_386.csv', 'National Pokédex data (CSV)') }}</li>
+  <li>Jump straight to a module item: <a href="{{ module_item('gen1-kanto', 'page-kanto-overview') }}">Kanto Overview (module item link)</a></li>
+</ul>
+
+<p style="font-size: 0.85em; color: #555;">Pokémon and all related names are trademarks of Nintendo, Creatures Inc. and GAME FREAK inc. This is a non-commercial internal software test fixture. {% if fetched_count() %}Pokédex artwork is loaded from pokemon.com ({{ fetched_count() }} of 386 images); any it couldn't fetch, and all other images, are original generated placeholders.{% else %}All images are original generated placeholders.{% endif %}</p>

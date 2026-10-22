@@ -1,0 +1,38 @@
+# Copy to themes/public-domain/lti.yaml (gitignored) to add the "LTI Sandbox" module and a course nav tab.
+#
+# LTI 1.3: create + enable a developer key on your Canvas instance first; the cartridge only
+# carries client_id. Canvas links the imported tool to that key (import fails if it doesn't exist).
+# LTI 1.1: set lti_version: "1.1"; consumer key/secret are NOT carried in exports, so set them
+# on the tool after import (or install the tool at the account level and let Canvas match by domain).
+tools:
+  primary:
+    name: "My LTI Tool (dev)"
+    description: "Local development build"
+    lti_version: "1.3"
+    client_id: "10000000000001"          # developer key global id
+    launch_url: "https://my-tool.example.test/lti/launch"
+    domain: "my-tool.example.test"
+    icon_url: "https://my-tool.example.test/icon.png"
+    privacy_level: public
+    custom_fields:
+      canvas_course_id: "$Canvas.course.id"
+      canvas_user_id: "$Canvas.user.id"
+      canvas_section_ids: "$Canvas.course.sectionIds"
+      canvas_assignment_id: "$Canvas.assignment.id"
+      canvas_assignment_due_at: "$Canvas.assignment.dueAt.iso8601"
+      user_timezone: "$Person.address.timezone"
+    placements:
+      course_navigation:
+        text: "My LTI Tool"
+        visibility: members
+        default: enabled
+      assignment_selection:
+        message_type: LtiDeepLinkingRequest
+        url: "https://my-tool.example.test/lti/deep_link"
+      link_selection:
+        message_type: LtiDeepLinkingRequest
+        url: "https://my-tool.example.test/lti/deep_link"
+      editor_button:
+        message_type: LtiDeepLinkingRequest
+        url: "https://my-tool.example.test/lti/deep_link"
+        icon_url: "https://my-tool.example.test/icon.png"

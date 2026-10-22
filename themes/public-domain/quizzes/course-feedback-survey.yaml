@@ -1,0 +1,16 @@
+key: course-feedback-survey
+title: "Course Feedback (anonymous ungraded survey)"
+quiz_type: survey
+anonymous_submissions: true
+allowed_attempts: 1
+description: "<p>Anonymous, ungraded survey. Responses are not tied to student names.</p>"
+questions:
+  - type: multiple_choice
+    name: "Overall"
+    points: 0
+    text: "<p>How would you rate the course so far?</p>"
+    answers: [{text: "⭐⭐⭐⭐⭐ Excellent"}, {text: "⭐⭐⭐⭐ Good"}, {text: "⭐⭐⭐ Okay"}, {text: "⭐⭐ Meh"}, {text: "⭐ Poor"}]
+  - type: essay
+    name: "Comments"
+    points: 0
+    text: "<p>Anything else you'd like Professor Van Helsing to know?</p>"

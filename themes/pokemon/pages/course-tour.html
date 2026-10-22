@@ -1,0 +1,21 @@
+<h2>Course Tour</h2>
+<p>An 8-second test clip (color bars with a 440 Hz tone) with English and Spanish caption tracks. Both are plain course files (not Canvas media objects), so this exercises HTML5 media playback from Files.</p>
+
+<video controls="controls" width="640" height="360" preload="metadata" poster="{{ file('images/regions/kanto.png') }}">
+  <source src="{{ file('media/pallet-town-tour.mp4') }}" type="video/mp4" />
+  <track kind="captions" srclang="en" label="English" src="{{ file('media/pallet-town-tour.en.vtt') }}" default="default" />
+  <track kind="captions" srclang="es" label="Español" src="{{ file('media/pallet-town-tour.es.vtt') }}" />
+  Your browser does not support HTML5 video. {{ a_file('media/pallet-town-tour.mp4', 'Download the clip') }}.
+</video>
+
+<h3>Audio</h3>
+<p>A 3-second battle cry (660 Hz tone):</p>
+<audio controls="controls" src="{{ file('media/battle-cry.mp3') }}">{{ a_file('media/battle-cry.mp3', 'Download battle-cry.mp3') }}</audio>
+
+<h3>Downloads</h3>
+<ul>
+  <li>{{ a_file('media/pallet-town-tour.mp4', 'pallet-town-tour.mp4') }} (H.264/AAC)</li>
+  <li>{{ a_file('media/pallet-town-tour.en.vtt', 'English captions (.vtt)') }}</li>
+  <li>{{ a_file('media/pallet-town-tour.es.vtt', 'Spanish captions (.vtt)') }}</li>
+  <li><a href="{{ file('media/battle-cry.mp3', download=True) }}">battle-cry.mp3 (forced download link)</a></li>
+</ul>

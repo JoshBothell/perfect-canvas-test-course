@@ -1,0 +1,23 @@
+key: next-year-preview
+title: "🚧 Coming Soon: Next Year's Public Domain Day (unpublished module)"
+published: false
+tests: [unpublished module with items]
+items:
+  - type: page
+    key: next-year-teaser
+    title: "Next Year's Arrivals Teaser"
+    published: false
+    item_published: false
+    body: "<p>Coming soon: the works that enter the U.S. public domain next January 1. This module is unpublished.</p>"
+  - type: quiz
+    key: ntw-sneak-peek
+    item_published: false
+    tests: [unpublished quiz in unpublished module, hide_results always]
+  - type: assignment
+    key: preview-draft
+    title: "Next Year Draft Assignment"
+    group: practice
+    points: 10
+    published: false
+    item_published: false
+    submission_types: [online_text_entry]

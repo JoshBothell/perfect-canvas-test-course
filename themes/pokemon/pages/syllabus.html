@@ -1,0 +1,32 @@
+<h2>PTA-151 Syllabus: Pokémon Trainer Academy, Gen I–III</h2>
+<p><strong>Instructor:</strong> Professor Oak · <strong>TA:</strong> Nurse Joy · <strong>Office hours:</strong> weekly (see Calendar)</p>
+
+<h3>Course Description</h3>
+<p>A survey of the Kanto, Johto and Hoenn regions: species, types, battle strategy, and the history of the first three generations of Pokémon games (1996–2004).</p>
+
+<h3>Learning Outcomes</h3>
+<ol>
+  {% for o in course.outcomes.values() %}<li><strong>{{ o.title }}</strong>: {{ o.description|striptags }}</li>{% endfor %}
+</ol>
+
+<h3>Grading</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Assignment group</th><th scope="col">Weight</th></tr></thead>
+  <tbody>
+    {% for g in course.assignment_groups.values() %}<tr><td>{{ g.title }}</td><td>{{ g.weight }}%</td></tr>{% endfor %}
+  </tbody>
+</table>
+
+<h3>Policies</h3>
+<ul>
+  <li><strong>Late work:</strong> −10% per day late, minimum 50%.</li>
+  <li><strong>Academic integrity:</strong> No trading answers over the Cable Club.</li>
+  <li><strong>Accessibility:</strong> All videos have captions; contact the instructor for accommodations.</li>
+</ul>
+
+<h3>Required Materials</h3>
+<ul>
+  <li>{{ a_file('documents/trainer-handbook.docx', 'Trainer Handbook') }}</li>
+  <li>{{ a_file('documents/type-chart.pdf', 'Type Matchup Chart') }}</li>
+</ul>
+<p><em>The Canvas "Course Summary" table of dated items appears below this text (syllabus_course_summary is enabled).</em></p>

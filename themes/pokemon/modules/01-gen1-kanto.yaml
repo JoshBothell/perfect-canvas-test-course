@@ -1,0 +1,159 @@
+key: gen1-kanto
+title: "🔴 Gen I: Kanto"
+published: true
+prerequisites: [start-here]
+tests: [prerequisite module, one of every basic item & submission type, completion requirements of every kind]
+items:
+  - type: subheader
+    title: "📖 Learn"
+  - type: page
+    key: kanto-overview
+    title: "Kanto Overview"
+    body: {file: pages/kanto-overview.html}
+    requirement: must_view
+    tests: [region guide, links to pages/assignments/quizzes/discussions/files, image gallery from Files]
+  - type: page
+    key: original-151
+    title: "The Original 151"
+    body: {file: pages/original-151.html}
+    requirement: must_view
+    indent: 1
+    tests: [151-row data table with 151 image references]
+  - type: page
+    key: type-matchups
+    title: "Type Matchups"
+    body: {file: pages/type-matchups.html}
+    requirement: must_mark_done
+    indent: 1
+    tests: [must_mark_done requirement, 17x17 generated table]
+  - type: file
+    path: documents/type-chart.pdf
+    title: "Type Matchup Chart (PDF)"
+    indent: 1
+    requirement: must_view
+    tests: [Attachment module item, PDF with usage rights, must_view on a file]
+  - type: url
+    key: bulbapedia-kanto
+    title: "Bulbapedia: Kanto (new tab)"
+    url: https://bulbapedia.bulbagarden.net/wiki/Kanto
+    new_tab: true
+    indent: 1
+  - type: url
+    key: wikipedia-red-blue
+    title: "Wikipedia: Pokémon Red and Blue (embedded)"
+    url: https://en.wikipedia.org/wiki/Pok%C3%A9mon_Red,_Blue,_and_Yellow
+    indent: 1
+
+  - type: subheader
+    title: "✍️ Practice: one of every submission type"
+  - type: assignment
+    key: choose-your-starter
+    title: "Choose Your Starter"
+    group: pokedex
+    points: 10
+    submission_types: [online_text_entry]
+    rubric: pokedex-entry
+    rubric_use_for_grading: true
+    due: "+5d@23:59"
+    description: |
+      <p>Pick Bulbasaur, Charmander or Squirtle and write a Pokédex-style entry (150–300 words) justifying your choice.</p>
+      <p>{% for n in ['Bulbasaur','Charmander','Squirtle'] %}{{ entry_image(entry(n)) }} {% endfor %}</p>
+      <p>Graded with the <em>Pokédex Entry Rubric</em> (rubric used for grading). The seeder adds a section-specific due date for Section B.</p>
+    requirement: must_submit
+    tests: [online_text_entry, rubric used for grading, outcome-aligned criterion, section override (seeder)]
+  - type: assignment
+    key: pokedex-photo-entry
+    title: "Pokédex Photo Entry"
+    group: pokedex
+    points: 10
+    submission_types: [online_upload]
+    allowed_extensions: [png, jpg, jpeg, pdf]
+    due: "+6d@17:00"
+    description: "<p>Upload a photo or drawing of a Kanto Pokémon (PNG, JPG or PDF only).</p>"
+    tests: [online_upload, allowed_extensions restriction]
+  - type: assignment
+    key: route-1-field-notes
+    title: "Route 1 Field Notes"
+    group: pokedex
+    points: 5
+    submission_types: [online_url]
+    due: "-2d@23:59"
+    description: "<p>Submit a URL to your field notes (any public doc). <strong>This one is past due</strong>, so the late policy applies.</p>"
+    tests: [online_url, past due date, late policy]
+  - type: assignment
+    key: battle-cry-recording
+    title: "Record Your Battle Cry"
+    group: pokedex
+    points: 5
+    submission_types: [media_recording]
+    due: "+8d@23:59"
+    description: "<p>Record a short audio or video battle cry using the Canvas media recorder.</p>"
+    tests: [media_recording]
+  - type: assignment
+    key: annotate-lab-notes
+    title: "Annotate Prof. Oak's Lab Notes"
+    group: pokedex
+    points: 10
+    submission_types: [student_annotation]
+    annotatable_file: documents/prof-oak-lab-notes.pdf
+    due: "+9d@23:59"
+    description: "<p>Use Canvas's annotation tools to highlight and comment directly on the lab notes PDF.</p>"
+    tests: [student_annotation with annotatable attachment]
+  - type: assignment
+    key: multi-type-submission
+    title: "Pokédex Entry (any format)"
+    group: pokedex
+    points: 10
+    submission_types: [online_text_entry, online_url, online_upload, media_recording]
+    due: "+10d@23:59"
+    description: "<p>Submit in whichever format you like. Allowed: text, URL, file upload or media.</p>"
+    tests: [multiple submission types on one assignment]
+  - type: assignment
+    key: game-boy-in-class
+    title: "Bring Your Game Boy to Class"
+    group: practice
+    points: 5
+    submission_types: [on_paper]
+    due: "+4d@10:00"
+    description: "<p>In-person activity: graded on paper; nothing to submit online.</p>"
+    tests: [on_paper submission type]
+  - type: assignment
+    key: gym-badge-checkin
+    title: "Gym Badge Check-in"
+    group: practice
+    points: 0
+    grading_type: not_graded
+    submission_types: [none]
+    description: "<p>No submission: the instructor checks your badge case in person.</p>"
+    tests: [submission type none, not_graded, no due date]
+
+  - type: subheader
+    title: "💬 Discuss"
+  - type: discussion
+    key: best-kanto-gym-leader
+    title: "Best Kanto Gym Leader?"
+    discussion_type: threaded
+    require_initial_post: true
+    allow_rating: true
+    message: |
+      <p>Which Kanto Gym Leader is the toughest, and why? Reference at least one type matchup from {{ a_page('type-matchups') }}.</p>
+      <p>You must post before you can see replies.</p>
+    graded:
+      group: talk
+      points: 10
+      due: "+7d@23:59"
+      rubric: battle-strategy
+    requirement: must_contribute
+    tests: [graded discussion, require_initial_post, ratings, rubric with free-form comments + ignore_for_scoring criterion]
+
+  - type: subheader
+    title: "⚔️ Battle"
+  - type: quiz
+    key: whos-that-pokemon
+    indent: 1
+    tests: [practice quiz (ungraded), unlimited attempts, silhouette images in questions, 3 questions randomized per build (--seed), question group drawing 3 of 386 from a bank on every attempt]
+  - type: quiz
+    key: kanto-gym-quiz
+    requirement: min_score
+    min_score: 6
+    tests: [graded Classic quiz, MC/TF/multiple answers/short answer/matching, answer + question feedback, min_score requirement, bonus bank draw mixed with fixed questions]

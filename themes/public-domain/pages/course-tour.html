@@ -1,0 +1,28 @@
+<h2>Course Tour</h2>
+<p>An 8-second excerpt of a public-domain silent film (with a silent audio track) with English and Spanish caption tracks. Both are plain course files (not Canvas media objects), so this exercises HTML5 media playback from Files.</p>
+
+<video controls="controls" width="640" height="360" preload="metadata" poster="{{ file('images/units/unit1.png') }}">
+  <source src="{{ file('media/reading-room-tour.mp4') }}" type="video/mp4" />
+  <track kind="captions" srclang="en" label="English" src="{{ file('media/reading-room-tour.en.vtt') }}" default="default" />
+  <track kind="captions" srclang="es" label="Español" src="{{ file('media/reading-room-tour.es.vtt') }}" />
+  Your browser does not support HTML5 video. {{ a_file('media/reading-room-tour.mp4', 'Download the clip') }}.
+</video>
+
+<h3>Audio</h3>
+<p>A 6-second excerpt of a public-domain band recording:</p>
+<audio controls="controls" src="{{ file('media/march-excerpt.mp3') }}">{{ a_file('media/march-excerpt.mp3', 'Download march-excerpt.mp3') }}</audio>
+
+<h3>Downloads</h3>
+<ul>
+  <li>{{ a_file('media/reading-room-tour.mp4', 'reading-room-tour.mp4') }} (H.264/AAC)</li>
+  <li>{{ a_file('media/reading-room-tour.en.vtt', 'English captions (.vtt)') }}</li>
+  <li>{{ a_file('media/reading-room-tour.es.vtt', 'Spanish captions (.vtt)') }}</li>
+  <li><a href="{{ file('media/march-excerpt.mp3', download=True) }}">march-excerpt.mp3 (forced download link)</a></li>
+</ul>
+
+<h3>Media credits</h3>
+<ul>
+  <li><strong>Video:</strong> <em>Edison Kinetoscopic Record of a Sneeze, January 7, 1894</em> (Edison Manufacturing Co.), from the <a href="https://www.loc.gov/item/00694192/">Library of Congress</a>. Published 1894: public domain in the United States. Trimmed and re-encoded.</li>
+  <li><strong>Audio:</strong> John Philip Sousa, <em>The Stars and Stripes Forever</em> (1896), performed by the United States Marine Band (2017), via <a href="https://commons.wikimedia.org/wiki/File:Sousa%27s_%22The_Stars_and_Stripes_Forever%22_-_United_States_Marine_Band_(2017).mp3">Wikimedia Commons</a>. A U.S. government work (public domain). 6-second excerpt.</li>
+  <li>Captions are original to this course.</li>
+</ul>

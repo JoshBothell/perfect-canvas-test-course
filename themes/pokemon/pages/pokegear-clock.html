@@ -1,0 +1,15 @@
+<h2>Day, Night & the Pokégear Clock</h2>
+<p>Gen II introduced a real-time clock: <strong>morning</strong> (04:00–10:00), <strong>day</strong> (10:00–18:00) and <strong>night</strong> (18:00–04:00). Some Pokémon (Hoothoot, Spinarak) only appear at night.</p>
+<p>This page is on your <strong>To-Do list</strong> for {{ date('+2d@09:00') }} (page todo_date).</p>
+
+<h3>Time-zone test strip</h3>
+<p>Every date below was computed in the course time zone (<strong>{{ settings.time_zone }}</strong>) when the course was built. Compare these with how Canvas, and your LTI tool, render the corresponding due dates.</p>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Spec</th><th scope="col">Local (course TZ)</th><th scope="col">Used by</th></tr></thead>
+  <tbody>
+    <tr><td><code>-2d@23:59</code></td><td>{{ date('-2d@23:59') }}</td><td>{{ a_assignment('route-1-field-notes') }} (past due)</td></tr>
+    <tr><td><code>+0d@23:59</code></td><td>{{ date('+0d@23:59') }}</td><td>{{ a_assignment('due-today') }}</td></tr>
+    <tr><td><code>dst_next@01:30</code></td><td>{{ date('dst_next@01:30') }}</td><td>{{ a_assignment('dst-deadline') }} (ambiguous wall-clock time on fall-back days)</td></tr>
+    <tr><td><code>+14d@08:00</code></td><td>{{ date('+14d@08:00') }}</td><td>Hoenn module unlock</td></tr>
+  </tbody>
+</table>

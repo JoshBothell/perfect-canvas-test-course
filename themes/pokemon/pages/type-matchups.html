@@ -1,0 +1,20 @@
+<h2>Type Matchups</h2>
+<p>Rows are the attacking type; columns are the defending type. Gen II added <strong>Dark</strong> and <strong>Steel</strong>, so this chart shows 17 types. Mark this page as done when you've studied it (<em>must mark done</em> requirement).</p>
+<p>Printable version: {{ a_file('documents/type-chart.pdf', 'Type Matchup Chart (PDF)') }}</p>
+<table border="1" cellpadding="3" style="border-collapse: collapse; font-size: 0.8em; text-align: center;">
+  <caption>Damage multiplier by attacking (row) and defending (column) type</caption>
+  <thead><tr><th scope="col">ATK ↓ / DEF →</th>{% for d in TYPES %}<th scope="col" style="background: {{ TYPE_COLORS[d] }}; color: #fff;">{{ d[:3] }}</th>{% endfor %}</tr></thead>
+  <tbody>
+  {% for a in TYPES %}
+    <tr><th scope="row" style="background: {{ TYPE_COLORS[a] }}; color: #fff;">{{ a }}</th>
+    {% for d in TYPES %}{% set e = effectiveness(a, d) %}<td style="background: {{ '#8fd48f' if e == 2 else '#f0a08c' if e == 0.5 else '#555' if e == 0 else '#fff' }}; color: {{ '#fff' if e == 0 else '#000' }};">{{ {2: '2×', 0.5: '½', 0: '0', 1: ''}[e] }}</td>{% endfor %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h3>Key rules</h3>
+<ul>
+  <li>Dual types multiply: Water vs. Rock/Ground (Geodude) = 2 × 2 = <strong>4×</strong>.</li>
+  <li>Same-type attack bonus (STAB) multiplies damage by 1.5.</li>
+  <li>In Gen I, Psychic was nearly unstoppable: Ghost moves were bugged and did nothing to it.</li>
+</ul>

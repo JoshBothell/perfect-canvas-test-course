@@ -1,0 +1,61 @@
+key: orientation
+title: "🏛️ Orientation: The Reading Room"
+published: true
+items:
+  - type: subheader
+    title: "👋 Welcome"
+  - type: page
+    key: welcome
+    title: "Welcome to Public Domain Academy"
+    front_page: true
+    body: {file: pages/welcome.html}
+    requirement: must_view
+    tests: [front page, default_view=wiki, rich HTML, internal links of every type]
+  - type: page
+    key: how-this-course-works
+    title: "How This Course Works"
+    body: {file: pages/how-this-course-works.html}
+    requirement: must_view
+    indent: 1
+    tests: [indented module item, must_view requirement]
+  - type: page
+    key: course-tour
+    title: "Course Tour (video, audio & captions)"
+    body: {file: pages/course-tour.html}
+    requirement: must_view
+    indent: 1
+    tests: [HTML5 video + audio from course files, VTT caption tracks (en/es)]
+  - type: discussion
+    key: introductions
+    title: "Introduce Yourself & Your Favorite Public-Domain Work"
+    discussion_type: threaded
+    pinned: true
+    allow_rating: true
+    message: |
+      <p>Tell us your name, where you're studying from, and one public-domain book, film, song or painting you love (and why!).</p>
+      <p>Bonus: attach a picture of your favorite {{ a_file('images/open-book.svg', 'open book') }}.</p>
+    requirement: must_contribute
+    tests: [ungraded pinned discussion, must_contribute requirement, discussion ratings]
+  - type: subheader
+    title: "🧰 Tools & Reference"
+  - type: page
+    key: kitchen-sink
+    title: "RCE Kitchen Sink (every content element)"
+    body: {file: pages/kitchen-sink.html}
+    tests: [headings/lists/tables/code/details/blockquote, equation image, iframe embed, RTL + CJK + emoji, long unbroken strings]
+  - type: file
+    path: documents/pd-research-handbook.docx
+    title: "Public Domain Research Handbook (.docx)"
+    tests: [Attachment module item, DOCX preview]
+  - type: url
+    key: canvas-student-guide
+    title: "Canvas Student Guide (opens in new tab)"
+    url: https://community.canvaslms.com/t5/Student-Guide/tkb-p/student
+    new_tab: true
+    tests: [ExternalUrl new_tab=true]
+  - type: url
+    key: wikipedia-domaine-public
+    title: "Domaine public on French Wikipedia (embedded external URL)"
+    url: https://fr.wikipedia.org/wiki/Domaine_public_(propri%C3%A9t%C3%A9_intellectuelle)
+    new_tab: false
+    tests: [ExternalUrl new_tab=false (iframe), percent-encoded URL]

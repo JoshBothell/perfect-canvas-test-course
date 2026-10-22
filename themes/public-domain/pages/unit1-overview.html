@@ -1,0 +1,33 @@
+{{ img('images/units/unit1.png', 'Unit 1: Foundations banner, brown and gold gradient', style='width: 100%; height: auto; border-radius: 10px;') }}
+<h2>Unit 1: Copyright Foundations</h2>
+<p>Before you can say a work is <em>free</em>, you need to know what copyright protects in the first place. This unit covers the <strong>Copyright Clause</strong> of the U.S. Constitution, what counts as an <strong>original work of authorship</strong>, the line between <strong>ideas and expression</strong>, and the basic arithmetic of copyright terms.</p>
+
+<h3>The collection, Part I at a glance</h3>
+{% set g1 = catalog_group(1) %}
+<ul>
+  <li><strong>Works:</strong> {{ g1|length }} (#001–#{{ '%03d' % g1[-1].id }}), all made before 1800</li>
+  <li><strong>Oldest:</strong> {{ g1[0].name }} ({{ g1[0].date_display }})</li>
+  <li><strong>Sources:</strong> {% for key, museum in MUSEUMS.items() %}{{ museum }} ({{ g1|selectattr('source', 'equalto', key)|list|length }}){% if not loop.last %}, {% endif %}{% endfor %}</li>
+</ul>
+
+<h3>Key sources of law</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">#</th><th scope="col">Source</th><th scope="col">Status of the text itself</th></tr></thead>
+  <tbody>
+  {% for source, status in [('U.S. Constitution, Art. I, § 8, cl. 8', 'us-government'), ('17 U.S.C. § 102 (subject matter)', 'us-government'), ('17 U.S.C. § 105 (government works)', 'us-government'), ('17 U.S.C. § 302 (duration)', 'us-government'), ('Feist v. Rural Telephone (1991)', 'us-government'), ('Statute of Anne (1710)', 'expired'), ('Copyright Act of 1790', 'expired'), ('A museum CC0 open-access image', 'cc0')] %}
+    <tr><td>{{ loop.index }}</td><td>{{ source }}</td><td>{{ status_badge(status, 96) }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h3>Gallery: the first nine works in the collection</h3>
+<p>{% for e in g1[:9] %}{{ entry_image(e, 96) }} {% endfor %}</p>
+
+<h3>What to do next</h3>
+<ol>
+  <li>Browse {{ a_page('collection-before-1800') }} and {{ a_page('term-grid') }}.</li>
+  <li>Submit {{ a_assignment('choose-your-first-work') }} (due {{ date('+5d@23:59') }}).</li>
+  <li>Join the debate: {{ a_discussion('idea-vs-expression') }}.</li>
+  <li>Warm up with {{ a_quiz('name-that-work') }}, then take {{ a_quiz('copyright-basics-quiz') }}. Score 6 or more to unlock Unit 2.</li>
+</ol>
+<p>Raw data for your own analysis: {{ a_file('data/term-rules.json', 'term-rules.json') }} · {{ a_file('data/renewal-search-log-10k.csv', 'Renewal Search Log (10,000 rows)') }}</p>

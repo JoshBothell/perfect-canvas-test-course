@@ -1,0 +1,11 @@
+<h2>The Full Collection #001–#{{ '%03d' % catalog|length }}</h2>
+<p>Every work in the course collection, one row each, with its image (a CC0 open-access image when the build could fetch it, otherwise a generated placeholder) and the evidence for its licence. This deliberately heavy page has {{ catalog|length }} rows and {{ catalog|length }} images. Data: {{ a_file('data/collection.csv', 'collection.csv') }}.</p>
+<table border="1" cellpadding="3" style="border-collapse: collapse; width: 100%; font-size: 0.9em;">
+  <caption>Public Domain Academy collection: source and licence evidence for every image</caption>
+  <thead><tr><th scope="col">#</th><th scope="col">Image</th><th scope="col">Title</th><th scope="col">Artist</th><th scope="col">Date</th><th scope="col">Era</th><th scope="col">Museum</th><th scope="col">Record</th><th scope="col">Licence</th><th scope="col">PD flag</th><th scope="col">Retrieved</th></tr></thead>
+  <tbody>
+  {% for e in catalog %}
+    <tr><td>{{ '%03d' % e.id }}</td><td>{{ entry_image(e, 40) }}</td><td>{{ e.name }}</td><td>{{ e.artist }}</td><td>{{ e.date_display }}</td><td>{{ e.era_label }}</td><td>{{ e.museum }}</td><td><a href="{{ e.object_url }}">{{ e.source }} {{ e.source_id }}</a></td><td><a href="{{ e.license_url }}">{{ e.license }}</a></td><td><code>{{ e.pd_flag_field }}</code></td><td>{{ e.retrieved }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>

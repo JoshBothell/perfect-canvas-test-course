@@ -1,0 +1,13 @@
+key: ntw-sneak-peek
+title: "Name That Work! Next Year Sneak Peek (unpublished)"
+quiz_type: practice_quiz
+published: false
+allowed_attempts: -1
+hide_results: always
+description: "<p>Unpublished practice quiz in an unpublished module. Students must never see it. Results are always hidden.</p>"
+questions:
+  - type: group
+    name: "Sneak peek mystery works (5 of 386)"
+    pick: 5
+    points_per_item: 1
+    bank: name-that-work-bank

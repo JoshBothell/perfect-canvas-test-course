@@ -1,0 +1,17 @@
+key: favorite-pd-arrival
+title: "Favorite Public Domain Day Arrival (graded survey)"
+quiz_type: graded_survey
+group: practice
+points: 2
+due: "+20d@23:59"
+description: "<p>A graded survey: everyone who completes it receives full credit; there are no right answers.</p>"
+questions:
+  - type: multiple_choice
+    name: "Pick one"
+    points: 1
+    text: "<p>Which kind of newly public-domain work are you most excited to reuse?</p>"
+    answers: [{text: Novels}, {text: Films}, {text: Songs and sheet music}]
+  - type: essay
+    name: "Why?"
+    points: 1
+    text: "<p>Why?</p>"

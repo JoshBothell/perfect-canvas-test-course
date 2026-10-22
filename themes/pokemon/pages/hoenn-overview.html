@@ -1,0 +1,24 @@
+{{ img('images/regions/hoenn.png', 'Gen III: Hoenn banner, red, blue and green gradient', style='width: 100%; height: auto; border-radius: 10px;') }}
+<h2>Welcome to Hoenn</h2>
+<p>Hoenn is the setting of <em>Pokémon Ruby, Sapphire and Emerald</em> (2002–2004). Gen III added <strong>135 species</strong> (#252–#386), Abilities, Natures, double battles, weather, Contests and Secret Bases.</p>
+<p>This module <strong>unlocks on {{ date('+14d@08:00') }}</strong> and only after you complete Johto.</p>
+
+{% set g3 = catalog_group(3) %}
+<h3>Hoenn starters</h3>
+<p>{% for n in ['Treecko','Grovyle','Sceptile','Torchic','Combusken','Blaziken','Mudkip','Marshtomp','Swampert'] %}{{ entry_image(entry(n), 96) }} {% endfor %}</p>
+
+<h3>Legendary & mythical Pokémon</h3>
+<table border="1" cellpadding="6" style="border-collapse: collapse;">
+  <thead><tr><th scope="col">Card</th><th scope="col">Name</th><th scope="col">Type</th><th scope="col">BST</th></tr></thead>
+  <tbody>{% for m in g3 if m.legendary == '1' or m.mythical == '1' %}<tr><td>{{ entry_image(m, 48) }}</td><td>{{ m.name }}{% if m.mythical == '1' %} <em>(mythical)</em>{% endif %}</td><td>{{ m.types|join(' / ') }}</td><td>{{ m.bst }}</td></tr>{% endfor %}</tbody>
+</table>
+
+<h3>Edge-case gallery</h3>
+<ul>
+  <li>{{ a_page('national-pokedex') }}: one 386-row page</li>
+  <li>{{ a_page('contest-gallery') }}: 30 images</li>
+  <li>{{ a_page('unicode-title') }}</li>
+  <li>{{ a_page('escaping-torture') }}</li>
+  <li>{{ a_page('max-length-title') }}</li>
+  <li>{{ a_page('rtl-page') }}</li>
+</ul>

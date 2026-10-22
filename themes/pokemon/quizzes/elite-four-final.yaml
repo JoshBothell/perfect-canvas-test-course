@@ -1,0 +1,97 @@
+key: elite-four-final
+title: "Elite Four Final Exam"
+quiz_type: assignment
+group: elite
+due: "+35d@23:59"
+unlock: "+14d@08:00"
+lock: "+38d@23:59"
+time_limit: 60
+allowed_attempts: 1
+access_code: "SURF"
+shuffle_answers: true
+show_correct_answers: true
+show_correct_answers_at: "+39d@08:00"
+hide_correct_answers_at: "+60d@08:00"
+one_time_results: false
+description: |
+  <p>The final exam uses <strong>every Classic Quiz question type</strong> once, so a single quiz exercises your quiz tooling end-to-end. It ends with three silhouettes drawn from the 386-question bank.</p>
+  <p><strong>Access code:</strong> <code>SURF</code> · 60-minute limit · one attempt · correct answers revealed after the exam window closes.</p>
+questions:
+  - type: text_only
+    name: "Reading passage"
+    text: |
+      <h3>Passage: the Weather Trio</h3>
+      <p>Groudon (Ground) expands the continents and summons harsh sunlight; Kyogre (Water) expands the seas and summons heavy rain. Rayquaza (Dragon/Flying) lives in the ozone layer and calms them both with Air Lock.</p>
+  - type: multiple_choice
+    name: "Mascot of Ruby"
+    points: 2
+    text: "<p>Which legendary Pokémon is on the cover of <em>Pokémon Ruby</em>?</p>"
+    answers: [{text: Groudon, correct: true}, {text: Kyogre}, {text: Rayquaza}, {text: Latias}]
+  - type: true_false
+    name: "Abilities"
+    points: 2
+    text: "<p>Abilities were introduced in Gen III.</p>"
+    answer: true
+  - type: multiple_answers
+    name: "Dragon types"
+    points: 2
+    text: "<p>Select every Pokémon below that is part Dragon type in Gen III.</p>"
+    answers: [{text: Salamence, correct: true}, {text: Flygon, correct: true}, {text: Altaria, correct: true}, {text: Gyarados}, {text: Charizard}]
+  - type: short_answer
+    name: "Champion"
+    points: 2
+    text: "<p>Who is the Hoenn Champion in <em>Ruby and Sapphire</em>?</p>"
+    answers: [Steven, Steven Stone, steven]
+  - type: fill_in_multiple_blanks
+    name: "Weather abilities"
+    points: 2
+    text: "<p>Groudon's ability is [a1] and Kyogre's ability is [a2].</p>"
+    blanks:
+      a1: [Drought, drought]
+      a2: [Drizzle, drizzle]
+  - type: multiple_dropdowns
+    name: "Regi trio"
+    points: 3
+    text: "<p>Regirock is [r1]-type, Regice is [r2]-type and Registeel is [r3]-type.</p>"
+    blanks:
+      r1: {correct: Rock, options: [Rock, Ground, Steel]}
+      r2: {correct: Ice, options: [Water, Ice, Psychic]}
+      r3: {correct: Steel, options: [Steel, Rock, Electric]}
+  - type: matching
+    name: "Match the Elite Four"
+    points: 4
+    text: "<p>Match each Hoenn Elite Four member to their specialty type.</p>"
+    pairs:
+      - {left: Sidney, right: Dark}
+      - {left: Phoebe, right: Ghost}
+      - {left: Glacia, right: Ice}
+      - {left: Drake, right: Dragon}
+    distractors: [Psychic, Steel]
+  - type: numerical
+    name: "Species count"
+    points: 2
+    text: "<p>How many species are in the National Pokédex through Gen III?</p>"
+    answers: [{exact: 386}]
+  - type: calculated
+    name: "Type effectiveness math"
+    points: 3
+    text: "<p>A move deals [B] base damage. It is super effective (×2) and gets STAB (×1.5). How much damage does it deal?</p>"
+    formula: "B*2*1.5"
+    tolerance: 0
+    decimal_places: 0
+    sets: 8
+    variables:
+      - {name: B, min: 10, max: 90, scale: 0}
+  - type: essay
+    name: "Team analysis"
+    points: 6
+    text: "<p>Describe the six-Pokémon team you'd bring to the Elite Four and justify each pick.</p>"
+  - type: file_upload
+    name: "Team sheet upload"
+    points: 2
+    text: "<p>Upload your final team sheet.</p>"
+  - type: group
+    name: "Final round: silhouettes (3 of 386)"
+    pick: 3
+    points_per_item: 2
+    bank: whos-that-pokemon-bank

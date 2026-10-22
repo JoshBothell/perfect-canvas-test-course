@@ -1,0 +1,88 @@
+# People, sections, groups, overrides and activity the seeder creates AFTER importing the cartridge.
+# Everything a Common Cartridge cannot carry lives here. Keys are stable; SIS ids are "<sis_prefix>-<key>".
+# Names are fictional characters from public-domain literature. Characters with live trademark or
+# special-rights claims (Sherlock Holmes, Tarzan, Winnie-the-Pooh, Mickey Mouse, Peter Pan) are avoided.
+
+sections:
+  - {key: gutenberg, name: "Gutenberg Hall (Section A)"}
+  - {key: folio,     name: "Folio Hall (Section B)"}
+  - {key: commons,   name: "Commons Online (Section C)", start: "-30d@00:00", end: "+90d@23:59"}
+
+users:
+  # staff
+  - {key: vanhelsing, name: "Abraham Van Helsing", short: "Prof. Van Helsing", role: TeacherEnrollment,  sections: [gutenberg, folio, commons]}
+  - {key: ishmael,    name: "Ishmael Bartleby",    short: "Ishmael",           role: TaEnrollment,       sections: [gutenberg, folio], limit_privileges_to_course_section: true}
+  - {key: jekyll,     name: "Henry Jekyll",        short: "Dr. Jekyll",        role: TeacherEnrollment,  sections: [commons], note: "second teacher (moderated-grading provisional grader)"}
+  - {key: nemo,       name: "Captain Nemo",        short: "Nemo",              role: DesignerEnrollment, sections: [gutenberg]}
+  # students
+  - {key: tom,       name: "Tom Sawyer",          role: StudentEnrollment, sections: [gutenberg]}
+  - {key: elizabeth, name: "Elizabeth Bennet",    role: StudentEnrollment, sections: [gutenberg]}
+  - {key: huck,      name: "Huckleberry Finn",    role: StudentEnrollment, sections: [folio]}
+  - {key: jane,      name: "Jane Eyre",           role: StudentEnrollment, sections: [folio]}
+  - {key: dorothy,   name: "Dorothy Gale",        role: StudentEnrollment, sections: [commons]}
+  - {key: ichabod,   name: "Ichabod Crane",       role: StudentEnrollment, sections: [commons]}
+  - {key: jo,        name: "Jo March",            role: StudentEnrollment, sections: [gutenberg, folio], note: "enrolled in two sections"}
+  - {key: hester,    name: "Hester Prynne",       role: StudentEnrollment, sections: [folio]}
+  - {key: eponine,   name: "Éponine Thénardier-Ñúñez 📜", short: "Éponine", sortable: "Thénardier-Ñúñez, Éponine", role: StudentEnrollment, sections: [commons], note: "unicode + emoji name"}
+  - {key: rip,       name: "Rip Van Winkle (Asleep)", role: StudentEnrollment, sections: [gutenberg], state: inactive, note: "inactive enrollment"}
+  - {key: phileas,   name: "Phileas Fogg Former-Traveller", role: StudentEnrollment, sections: [folio], state: completed, note: "concluded enrollment"}
+  - {key: tester,    name: "Test Scholar With An Exceptionally Long Name That Overflows Most UI Columns", short: "Long Name", role: StudentEnrollment, sections: [commons]}
+  # observer
+  - {key: polly,     name: "Polly Sawyer", short: "Aunt Polly", role: ObserverEnrollment, sections: [gutenberg], observes: tom}
+
+group_sets:
+  - name: "Law Firms"             # created (empty) by the cartridge import; we fill it
+    groups:
+      "Renewal & Partners": [tom, elizabeth, huck]
+      "Formalities LLP": [jane, hester, jo]
+      "Expiration Associates": [dorothy, ichabod, eponine]
+  - name: "Moot Court Teams"
+    self_signup: enabled
+    create_group_count: 4         # empty self-signup groups
+
+overrides:
+  - {assignment: choose-your-first-work, section: folio, due: "+7d@23:59", title: "Section B: +2 days"}
+  - {assignment: unit3-exam-section-b, section: folio, due: "+32d@23:59"}
+  - {assignment: catalog-record-url, students: [elizabeth], due: "+3d@23:59", title: "Elizabeth: extension"}
+  - {assignment: firm-brief, group: "Expiration Associates", due: "+23d@23:59"}
+
+# Student activity. Students first satisfy the Orientation module's requirements (view pages,
+# mark-done, post intro) so Unit 1 unlocks, then submit. Partial progress is intentional: it
+# produces a realistic mix of complete / in-progress / not-started module states.
+progress:
+  complete_orientation: [tom, elizabeth, huck, jane, dorothy, jo, eponine]
+  intro_posts:
+    tom: "Tom Sawyer from St. Petersburg, Missouri. Favorite PD work: anything I can get someone else to whitewash for me 🖌️"
+    elizabeth: "Elizabeth Bennet, Longbourn. My pick is the 1813 novel everyone keeps adapting 📖"
+    huck: "Huck here. I like stories you can float down a river with 🛶"
+    jane: "Jane Eyre. Thornfield's library is full of public-domain treasures."
+    dorothy: "Dorothy from Kansas! The 1900 Oz book has been PD for ages 🌪️"
+    jo: "Jo March, Concord. I write, so I care a lot about how long copyrights last ✍️"
+    eponine: "Bonjour! Unicode test student: 名前 Éponine Ñúñez 📜 (Les Misérables, 1862)"
+
+submissions:
+  - {assignment: choose-your-first-work, user: tom, type: online_text_entry, body: "<p>I pick the oldest one: it's been public domain for centuries, so nobody can make me pay to whitewash it.</p>"}
+  - {assignment: choose-your-first-work, user: elizabeth, type: online_text_entry, body: "<p>A careful memo: creator, date, museum record, and the CC0 evidence.</p>"}
+  - {assignment: choose-your-first-work, user: huck, type: online_text_entry, body: "<p>It's old, so it's free. (Needs more research.)</p>"}
+  - {assignment: choose-your-first-work, user: eponine, type: online_text_entry, body: "<p>Les Misérables (1862) 📜 with an RTL aside: <span dir='rtl'>الملك العام</span></p>"}
+  - {assignment: catalog-record-url, user: tom, type: online_url, url: "https://www.artic.edu/open-access/open-access-images"}
+  - {assignment: catalog-record-url, user: elizabeth, type: online_url, url: "https://example.com/elizabeth-catalog-record"}
+  - {assignment: pd-image-in-the-wild, user: jane, type: online_upload, file: "images/collection/era2/153-saltash-with-the-water-ferry-cornwall.png"}
+  - {assignment: status-report-any-format, user: dorothy, type: online_text_entry, body: "<p>Text submission on a multi-type assignment.</p>"}
+  - {assignment: status-report-any-format, user: jo, type: online_url, url: "https://example.com/jo"}
+
+grades:
+  - {assignment: choose-your-first-work, user: tom, rubric: {Accuracy: 3, "Research Detail": 3, Presentation: 1}, comment: "Good instinct, but cite the museum record!"}
+  - {assignment: choose-your-first-work, user: elizabeth, rubric: {Accuracy: 4, "Research Detail": 4, Presentation: 2}, comment: "Excellent 📖"}
+  - {assignment: catalog-record-url, user: tom, grade: "4", comment: "Late, but solid."}
+  - {assignment: catalog-record-url, user: huck, excuse: true, comment: "Excused: travelling."}
+  - {assignment: card-catalog-hunt, user: tom, grade: "5"}
+  - {assignment: card-catalog-hunt, user: jane, grade: "0", comment: "Absent (on_paper grade entered by teacher)."}
+  - {assignment: status-memo-letter, user: elizabeth, grade: "Precedent"}
+  - {assignment: research-toolkit-setup, user: huck, grade: "complete"}
+  - {assignment: renewal-report-gpa, user: jane, grade: "3.5"}
+  - {assignment: government-works-percent, user: hester, grade: "87%"}
+  - {assignment: pd-day-countdown, user: jo, grade: "3"}
+  - {assignment: fair-use-report, user: dorothy, grade: "18", comment: "Hidden until posted (manual post policy)."}
+
+final_grader: {assignment: moot-court-judging, user: vanhelsing}

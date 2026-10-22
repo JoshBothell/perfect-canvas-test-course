@@ -1,0 +1,11 @@
+<h2>National Pokédex #001–#386</h2>
+<p>Every species from Gen I–III, one row each, with its card image (official artwork when the build could fetch it, otherwise a generated placeholder). This deliberately heavy page has 386 rows and 386 images. Data: {{ a_file('data/pokedex_1_386.csv', 'pokedex_1_386.csv') }}.</p>
+<table border="1" cellpadding="3" style="border-collapse: collapse; width: 100%; font-size: 0.9em;">
+  <caption>National Pokédex, Generations I–III (Gen III-era typings)</caption>
+  <thead><tr><th scope="col">#</th><th scope="col">Card</th><th scope="col">Name</th><th scope="col">Gen</th><th scope="col">Type 1</th><th scope="col">Type 2</th><th scope="col">HP</th><th scope="col">Atk</th><th scope="col">Def</th><th scope="col">SpA</th><th scope="col">SpD</th><th scope="col">Spe</th><th scope="col">BST</th></tr></thead>
+  <tbody>
+  {% for m in catalog %}
+    <tr><td>{{ '%03d' % m.dex }}</td><td>{{ entry_image(m, 40) }}</td><td>{{ m.name }}</td><td>{{ m.generation }}</td><td>{{ m.type1 }}</td><td>{{ m.type2 }}</td><td>{{ m.hp }}</td><td>{{ m.attack }}</td><td>{{ m.defense }}</td><td>{{ m.sp_attack }}</td><td>{{ m.sp_defense }}</td><td>{{ m.speed }}</td><td>{{ m.bst }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>

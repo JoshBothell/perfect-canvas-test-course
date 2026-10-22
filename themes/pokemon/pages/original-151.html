@@ -1,0 +1,11 @@
+<h2>The Original 151</h2>
+<p>Every Gen I species with its card image. Data from <code>pokedex_1_386.csv</code> (Gen I–III era typings, pre-Fairy). The table has 151 rows and 151 images, which makes it a reasonably heavy page for render and scrape tests.</p>
+<table border="1" cellpadding="4" style="border-collapse: collapse; width: 100%;">
+  <caption>Kanto Pokédex #001–#151</caption>
+  <thead><tr><th scope="col">#</th><th scope="col">Card</th><th scope="col">Name</th><th scope="col">Category</th><th scope="col">Type(s)</th><th scope="col">BST</th><th scope="col">Evolves from</th></tr></thead>
+  <tbody>
+  {% for m in catalog_group(1) %}
+    <tr><td>{{ '%03d' % m.dex }}</td><td>{{ entry_image(m, 48) }}</td><td>{{ m.name }}</td><td>{{ m.genus }}</td><td>{{ m.types|join(' / ') }}</td><td>{{ m.bst }}</td><td>{{ m.evolves_from or '—' }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
