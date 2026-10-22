@@ -149,3 +149,14 @@ def test_jpeg_sources_are_converted_and_downscaled(monkeypatch, tmp_path):
     assert (tmp_path / "007.png").read_bytes() == rep.fetched[7], "cache holds the converted PNG"
     png = _png((1, 2, 3, 255))
     assert images.normalize(png) is png, "small PNGs pass through untouched"
+
+
+def test_cached_images_follow_a_lowered_max_size(tmp_path):
+    """Lowering images.source.max_size takes effect without --refresh-images; images within it stay byte-identical."""
+    big, small = _png((200, 30, 30, 255), size=(300, 200)), _png((30, 30, 200, 255), size=(40, 40))
+    (tmp_path / "001.png").write_bytes(big)
+    (tmp_path / "002.png").write_bytes(small)
+    src = ImageSource(url="https://example.invalid/{id}.png", cache="t", max_size=100)
+    rep = images.fetch_all([{"id": 1}, {"id": 2}], src, "auto", cache_dir=tmp_path)
+    assert rep.cached == 2 and Image.open(io.BytesIO(rep.fetched[1])).size == (100, 67)
+    assert rep.fetched[2] == small

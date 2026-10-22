@@ -20,7 +20,7 @@ A theme-agnostic Python generator (`cc build`) that writes a **Canvas Course Exp
 **Status (2026-10-22):**
 - Theme-agnostic refactor done. The Pokémon output is **byte-identical** to the pre-refactor build: checked with `cmp` for the offline, official-art and LTI variants, and guarded by a golden digest test.
 - Static validation passes, and 96 pytest tests pass (1 skip: the commercial-only forbid test for Pokémon).
-- The `public-domain` theme is the default and has the **identical test matrix** (`cc matrix --theme public-domain --compare pokemon --ignore-tests`). It passes `--forbid-theme pokemon` and the client hygiene check, and builds byte-reproducibly with all 386 CC0 images (13.6 MB).
+- The `public-domain` theme is the default and has the **identical test matrix** (`cc matrix --theme public-domain --compare pokemon --ignore-tests`). It passes `--forbid-theme pokemon` and the client hygiene check, and builds byte-reproducibly with all 386 CC0 images (7.9 MB at `max_size: 256`).
 - `cc_gen/matrix.py` signature: bank lines are sorted (bank order is theme content) and AGS `line_item` `tag`/`resource_id` are reduced to `<ref>`. Build output is unaffected.
 - The course has **never been imported into a live Canvas**, and the seeder has **never run against a real API** (no credentials were available). The first live run is the real verification (§10).
 
@@ -487,7 +487,7 @@ These expand at load using `random.Random(f"{course.seed}:{quiz_key}:{index}")`.
 - **No Pokémon material at all:** no names, artwork, data CSV, pokemon.com URL, type chart or gym-leader data. Write the theme's own `theme.py`; don't import from `themes/pokemon/theme.py`.
 - **Images need verifiable PD/CC0 status per file.** Good sources include museum open-access APIs (e.g. the Met, Art Institute of Chicago, Rijksmuseum, Smithsonian CC0), plus Wikimedia Commons files whose licence is explicitly PD/CC0, checked per file.
   - Record source URL + licence per catalog row, and surface it inside existing items (e.g. columns in the catalog table page and the shipped CSV). Don't add new items; that would change the matrix.
-  - Set a descriptive `user_agent` and respect API terms. Use `max_size` (public-domain uses 360) to keep the package small.
+  - Set a descriptive `user_agent` and respect API terms. Use `max_size` (public-domain uses 256: 360 gave 13.6 MB, 256 gives 7.9 MB) to keep the package small. Cached images are re-normalized to the current `max_size` on read, but after lowering it run `--refresh-images` once so the cache matches a fresh download byte-for-byte.
   - The fetcher converts JPEG/WebP to PNG.
 - **Masking:** `silhouette` only works on transparent or plain-white backgrounds. Paintings and photos need `mask: pixelate` or `blur`, or a `mask_image` hook.
 - **Placeholder art and generated assets** must be original. The toolkit's banners, cards, spinner and scene are generic shapes.

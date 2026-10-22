@@ -27,7 +27,7 @@ images:
     cache: pd-open-access       # build/cache/pd-open-access/<id>.png
     label: "AIC + Met open access (CC0)"
     user_agent: "public-domain-academy-canvas-fixture/0.1 (+test course build; CC0 open-access images)"
-    max_size: 360
+    max_size: 256                 # > the largest display size (215px quiz feedback); keeps the package < 10 MB
   alt_fetched: "{title}, {artist} ({date_display})"
   alt_placeholder: "Placeholder museum label for #{id:03d} {title}"
   mask: pixelate                # paintings have no transparent background, so silhouettes don't work

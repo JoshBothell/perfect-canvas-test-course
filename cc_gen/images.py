@@ -120,7 +120,7 @@ def fetch_all(entries: list[dict], source: ImageSource | None, mode: str = "auto
     for e in entries:
         f = cache_dir / f"{_cache_stem(e['id'])}.png"
         if not refresh and f.exists() and _valid_png(data := f.read_bytes()):
-            rep.fetched[e["id"]] = data
+            rep.fetched[e["id"]] = normalize(data, source.max_size)  # no-op unless max_size shrank since caching
             rep.cached += 1
         elif source.url_for(e):
             todo.append(e)
