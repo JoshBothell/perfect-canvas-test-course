@@ -1,5 +1,7 @@
 # Canvas test courses for LTI development
 
+<img src="docs/images/identify-quiz.png" align="right" width="280" alt="A Canvas quiz result: a silhouette identify question, answered correctly, with the unmasked image shown as feedback">
+
 A **theme-agnostic generator** that builds a feature-dense Canvas course as a Canvas Course Export Package (`.imscc`), plus a **REST seeder** that adds everything a cartridge can't carry: sections, users, groups, overrides, submissions and grades.
 
 The content is inert filler supplied by a **theme** (`themes/<name>/`). The point is coverage: every content type, submission type, grading type and quiz question type, plus module rules, date and time-zone edge cases, and awkward content (unicode, RTL, escaping, 255-character titles, a 386-row page). LTI tools usually break on these. Every theme exercises the **same test matrix**; see **[docs/test-matrix/public-domain.md](docs/test-matrix/public-domain.md)** (or [docs/TEST_MATRIX.md](docs/TEST_MATRIX.md) for Pokémon) for what each item tests.

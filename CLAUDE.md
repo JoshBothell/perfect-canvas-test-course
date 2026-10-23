@@ -22,7 +22,7 @@ A theme-agnostic Python generator (`cc build`) that writes a **Canvas Course Exp
 - Static validation passes, and 96 pytest tests pass (1 skip: the commercial-only forbid test for Pokémon).
 - The `public-domain` theme is the default and has the **identical test matrix** (`cc matrix --theme public-domain --compare pokemon --ignore-tests`). It passes `--forbid-theme pokemon` and the client hygiene check, and builds byte-reproducibly with all 386 CC0 images (7.9 MB at `max_size: 256`).
 - `cc_gen/matrix.py` signature: bank lines are sorted (bank order is theme content) and AGS `line_item` `tag`/`resource_id` are reduced to `<ref>`. Build output is unaffected.
-- The course has **never been imported into a live Canvas**, and the seeder has **never run against a real API** (no credentials were available). The first live run is the real verification (§10).
+- **First live import (2026-10-22):** the Pokémon build was imported into a live Canvas and a student attempt of the Marathon quiz was submitted (`docs/images/identify-quiz.png`). Bank draws, the silhouette mask and the unmasked-image feedback all render. Nothing else has been checked live yet: not the rest of the import, the `public-domain` theme or the seeder (§10).
 
 ## 2. Hard rules
 
@@ -497,9 +497,10 @@ These expand at load using `random.Random(f"{course.seed}:{quiz_key}:{index}")`.
   - Media and other non-generated assets are documented in `themes/public-domain/PROVENANCE.md`. Keep it current when you replace an asset.
   - `tests/test_public_domain.py` asserts the licence evidence (CC0 on every row, PD flags in provenance, no `description` keys).
 
-## 10. Known gaps / verify on first live import
+## 10. Known gaps / still to verify live
 
-- **Never verified live:** the whole import, the seeder, and every endpoint and param in `seed.py`. Expect small fixes. Endpoints used:
+- **Verified live (2026-10-22, Pokémon):** import succeeds; Marathon bank draws, 0.1-pt scoring, silhouette masked images and their unmasked-image feedback display on a submitted attempt, even with `show_correct_answers: false`.
+- **Not yet verified live:** the rest of the import, the `public-domain` theme, the seeder, and every endpoint and param in `seed.py`. Expect small fixes. Endpoints used:
   - content_migrations + `pre_attachment`
   - `accounts/:id/users` + `pseudonym[...]`
   - `sections/:id/enrollments` (+ DELETE `task=deactivate|conclude`)
@@ -511,7 +512,6 @@ These expand at load using `random.Random(f"{course.seed}:{quiz_key}:{index}")`.
 - **Check migration issues for:**
   - `student_annotation`, recurring events, formula/numerical questions, min_percentage
   - `--new-quizzes` conversion
-  - whether Marathon's general feedback shows with `show_correct_answers: false`
   - sanitizer-stripped HTML (`<video>`/`<track>`, MathML, iframes)
 - **Seeder scope:** it only submits Unit 1 work, because later units are locked by prerequisites. Taking quizzes via the API, peer-review pairings and provisional grades are not seeded.
 - **New Quizzes:** with `--new-quizzes`, `cc verify` adjusts assignment counts, but quiz-specific checks are skipped.
