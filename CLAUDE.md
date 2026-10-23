@@ -22,7 +22,10 @@ A theme-agnostic Python generator (`cc build`) that writes a **Canvas Course Exp
 - Static validation passes, and 96 pytest tests pass (1 skip: the commercial-only forbid test for Pokémon).
 - The `public-domain` theme is the default and has the **identical test matrix** (`cc matrix --theme public-domain --compare pokemon --ignore-tests`). It passes `--forbid-theme pokemon` and the client hygiene check, and builds byte-reproducibly with all 386 CC0 images (7.9 MB at `max_size: 256`).
 - `cc_gen/matrix.py` signature: bank lines are sorted (bank order is theme content) and AGS `line_item` `tag`/`resource_id` are reduced to `<ref>`. Build output is unaffected.
-- **First live import (2026-10-22):** the Pokémon build was imported into a live Canvas and a student attempt of the Marathon quiz was submitted (`docs/images/identify-quiz.png`). Bank draws, the silhouette mask and the unmasked-image feedback all render. Nothing else has been checked live yet: not the rest of the import, the `public-domain` theme or the seeder (§10).
+- **Live imports (2026-10-22/23):** both themes have been imported into a live Canvas.
+  - Pokémon: a student attempt of the Marathon quiz was submitted (`docs/images/identify-quiz.png`). Bank draws, the silhouette mask and the unmasked-image feedback all render.
+  - `public-domain`: the owner reports the import worked well.
+  - The seeder has **never run against a real API** (§10).
 
 ## 2. Hard rules
 
@@ -500,7 +503,8 @@ These expand at load using `random.Random(f"{course.seed}:{quiz_key}:{index}")`.
 ## 10. Known gaps / still to verify live
 
 - **Verified live (2026-10-22, Pokémon):** import succeeds; Marathon bank draws, 0.1-pt scoring, silhouette masked images and their unmasked-image feedback display on a submitted attempt, even with `show_correct_answers: false`.
-- **Not yet verified live:** the rest of the import, the `public-domain` theme, the seeder, and every endpoint and param in `seed.py`. Expect small fixes. Endpoints used:
+- **Verified live (2026-10-23, public-domain):** imports and works well, per the owner. No specific issues were reported.
+- **Not yet verified live:** the seeder, and every endpoint and param in `seed.py`. Expect small fixes. Endpoints used:
   - content_migrations + `pre_attachment`
   - `accounts/:id/users` + `pseudonym[...]`
   - `sections/:id/enrollments` (+ DELETE `task=deactivate|conclude`)
