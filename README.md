@@ -1,7 +1,5 @@
 # Canvas test courses for LTI development
 
-<img src="docs/images/identify-quiz.png" align="right" width="280" alt="A Canvas quiz result: a silhouette identify question, answered correctly, with the unmasked image shown as feedback">
-
 A **theme-agnostic generator** that builds a feature-dense Canvas course as a Canvas Course Export Package (`.imscc`), plus a **REST seeder** that adds everything a cartridge can't carry: sections, users, groups, overrides, submissions and grades.
 
 The content is inert filler supplied by a **theme** (`themes/<name>/`). The point is coverage: every content type, submission type, grading type and quiz question type, plus module rules, date and time-zone edge cases, and awkward content (unicode, RTL, escaping, 255-character titles, a 386-row page). LTI tools usually break on these. Every theme exercises the **same test matrix**; see **[docs/test-matrix/public-domain.md](docs/test-matrix/public-domain.md)** (or [docs/TEST_MATRIX.md](docs/TEST_MATRIX.md) for Pokémon) for what each item tests.
@@ -83,6 +81,8 @@ uv run cc validate --theme NEW --forbid-theme pokemon           # prove no Poké
 - **Roster:** fictional characters from public-domain literature, avoiding characters with live trademark claims.
 
 ## Pokémon theme: artwork
+
+<img src="docs/images/identify-quiz.png" align="right" width="280" alt="A Canvas quiz result: a silhouette identify question, answered correctly, with the unmasked image shown as feedback">
 
 Each build tries to fetch the official Pokédex image for all 386 species from `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/NNN.png` (theme.yaml `images.source`):
 - Downloads are validated as PNGs and cached in `build/cache/pokemon-com/` (gitignored). After the first build, art is available offline and rebuilds are byte-identical.
